@@ -1,6 +1,7 @@
+package NumberTheory;
 import java.util.*;
 
-public class Euclid_primes {
+public class Euclid_gcd {
 	
 	//Euclid's algorithm to find gcd.
 	public static int gcd(int p, int q) {
@@ -19,23 +20,4 @@ public class Euclid_primes {
 	      int b = vals[1] - (p / q) * vals[2];
 	      return new int[] { d, a, b };
 	   }
-	
-	//Efficient prime factorization of integer n.
-	//Returns a list of prime factors.
-	public static List<Integer> primeFactors(int n) {
-		List<Integer> res = new ArrayList<Integer>();
-		while (n%2 == 0) {
-			res.add(2);
-		}
-		for (int i=3; i < Math.sqrt(n); i=i+2) {
-			while (n%i == 0) {
-	            res.add(i);
-	            n = n/i;
-	        }
-		}
-		if (n>2) {
-			res.add(n);
-		}
-		return res;
-	}
 }

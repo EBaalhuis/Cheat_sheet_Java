@@ -1,5 +1,4 @@
-package Dijkstra;
-
+package Graphs;
 import java.util.*;
 
 class V implements Comparable<V> {
