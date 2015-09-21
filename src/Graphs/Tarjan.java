@@ -1,8 +1,9 @@
+//Find strongly connected components of a graph.
+//O(E + V)
 package Graphs;
 import java.util.*;
 
 public class Tarjan {
-
 	List<Integer>[] graph;
 	boolean[] visited;
 	Stack<Integer> stack;
@@ -71,12 +72,12 @@ public class Tarjan {
 				int start = in.nextInt();
 				int end = in.nextInt();
 				g[start].add(end);
-				g[end].add(start); //If the graph is not directed.
+				//g[end].add(start); //If the graph is not directed.
 			}
 			
 			List<List<Integer>> components = new Tarjan().scc(g);
 			//System.out.println(components); //Print array of components.
-			System.out.println(components.size()); //Print number of components.
+			//System.out.println(components.size()); //Print number of components.
 		}
 	}
 }

@@ -1,10 +1,10 @@
+// Efficient prime factorization of integer n.
+// Returns a list of prime factors.
 package NumberTheory;
-
 import java.util.*;
 
 public class PrimeDecomposition {
-	// Efficient prime factorization of integer n.
-	// Returns a list of prime factors.
+	
 	public static List<Integer> primeFactors(int a) {
 		List<Integer> res = new ArrayList<Integer>();
 		while (a % 2 == 0) {

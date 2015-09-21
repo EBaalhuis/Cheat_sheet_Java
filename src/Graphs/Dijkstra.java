@@ -1,3 +1,5 @@
+//Find shortest path from one source to each other vertex.
+//O(E + V logV)
 package Graphs;
 import java.util.*;
 
@@ -76,7 +78,6 @@ public class Dijkstra {
 			}
 
 			compute(vertices[source]);
-
 		}
 	}
 }
