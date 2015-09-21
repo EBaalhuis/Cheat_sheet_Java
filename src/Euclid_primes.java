@@ -38,6 +38,4 @@ public class Euclid_primes {
 		}
 		return res;
 	}
-	
-	
 }

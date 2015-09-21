@@ -1,6 +1,5 @@
-package ConnectedComponents;
-
 import java.util.*;
+//Tarjan is better.
 
 class V implements Comparable<V> {
 	public final int name;
