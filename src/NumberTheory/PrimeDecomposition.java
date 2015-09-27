@@ -5,21 +5,22 @@ import java.util.*;
 
 public class PrimeDecomposition {
 	
-	public static List<Integer> primeFactors(int a) {
-		List<Integer> res = new ArrayList<Integer>();
+	public static List<Long> primeFactors(long a) {
+		List<Long> res = new ArrayList<Long>();
 		while (a % 2 == 0) {
-			res.add(2);
+			res.add((long) 2);
 			a = a / 2;
 		}
 		for (int i = 3; i < Math.sqrt(a); i = i + 2) {
 			while (a % i == 0) {
-				res.add(i);
+				res.add((long) i);
 				a = a / i;
 			}
 		}
 		if (a > 2) {
-			res.add(a);
+			res.add((long) a);
 		}
 		return res;
 	}
+	
 }
