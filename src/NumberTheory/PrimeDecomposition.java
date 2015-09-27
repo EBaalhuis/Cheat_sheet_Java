@@ -11,7 +11,7 @@ public class PrimeDecomposition {
 			res.add((long) 2);
 			a = a / 2;
 		}
-		for (int i = 3; i < Math.sqrt(a); i = i + 2) {
+		for (int i = 3; i <= Math.sqrt(a); i = i + 2) {
 			while (a % i == 0) {
 				res.add((long) i);
 				a = a / i;
