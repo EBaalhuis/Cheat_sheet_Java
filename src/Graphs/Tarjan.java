@@ -56,12 +56,12 @@ public class Tarjan {
 	}
 
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		int n = in.nextInt();
+		Reader.init(System.in);
+		int n = Reader.nextInt();
 
 		for (int i = 0; i < n; i++) {
-			int nV = in.nextInt();
-			int nE = in.nextInt();
+			int nV = Reader.nextInt();
+			int nE = Reader.nextInt();
 			List<Integer>[] g = new List[nV];
 			
 			for (int j = 0; j < g.length; j++) {
@@ -69,8 +69,8 @@ public class Tarjan {
 			}
 			
 			for (int j = 0; j < nE; j++) {
-				int start = in.nextInt();
-				int end = in.nextInt();
+				int start = Reader.nextInt();
+				int end = Reader.nextInt();
 				g[start].add(end);
 				//g[end].add(start); //If the graph is not directed.
 			}
