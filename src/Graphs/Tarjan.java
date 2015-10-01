@@ -55,29 +55,29 @@ public class Tarjan {
 		}
 	}
 
-	public static void main(String[] args) {
-		Reader.init(System.in);
-		int n = Reader.nextInt();
-
-		for (int i = 0; i < n; i++) {
-			int nV = Reader.nextInt();
-			int nE = Reader.nextInt();
-			List<Integer>[] g = new List[nV];
-			
-			for (int j = 0; j < g.length; j++) {
-				g[j] = new ArrayList<>();
-			}
-			
-			for (int j = 0; j < nE; j++) {
-				int start = Reader.nextInt();
-				int end = Reader.nextInt();
-				g[start].add(end);
-				//g[end].add(start); //If the graph is not directed.
-			}
-			
-			List<List<Integer>> components = new Tarjan().scc(g);
-			//System.out.println(components); //Print array of components.
-			//System.out.println(components.size()); //Print number of components.
-		}
-	}
+//	public static void main(String[] args) {
+//		Reader.init(System.in);
+//		int n = Reader.nextInt();
+//
+//		for (int i = 0; i < n; i++) {
+//			int nV = Reader.nextInt();
+//			int nE = Reader.nextInt();
+//			List<Integer>[] g = new List[nV];
+//			
+//			for (int j = 0; j < g.length; j++) {
+//				g[j] = new ArrayList<>();
+//			}
+//			
+//			for (int j = 0; j < nE; j++) {
+//				int start = Reader.nextInt();
+//				int end = Reader.nextInt();
+//				g[start].add(end);
+//				//g[end].add(start); //If the graph is not directed.
+//			}
+//			
+//			List<List<Integer>> components = new Tarjan().scc(g);
+//			//System.out.println(components); //Print array of components.
+//			//System.out.println(components.size()); //Print number of components.
+//		}
+//	}
 }
