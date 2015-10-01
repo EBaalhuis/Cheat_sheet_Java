@@ -15,7 +15,7 @@ public class BFS {
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(start);
 		
-		if (__CONDITION) { // check if start is what you are looking for.
+		if (true) { // check if start is what you are looking for.
 			return start;
 		}
 
@@ -23,7 +23,7 @@ public class BFS {
 			int u = q.poll();
 			for (int v : graph[u]) {
 				if (!visited[v]) {
-					if (__CONDITION) { // check if v is what you are looking for.
+					if (true) { // check if v is what you are looking for.
 						return v;
 					}
 					visited[v] = true;
@@ -34,30 +34,31 @@ public class BFS {
 		
 		return -1;
 	}
-
-	public static void main(String[] args) throws IOException {
-		Reader.init(System.in);
-		int n = Reader.nextInt();
-
-		for (int i = 0; i < n; i++) {
-			int nV = Reader.nextInt();
-			int nE = Reader.nextInt();
-			List<Integer>[] g = new List[nV];
-
-			for (int j = 0; j < g.length; j++) {
-				g[j] = new ArrayList<>();
-			}
-
-			for (int j = 0; j < nE; j++) {
-				int start = Reader.nextInt();
-				int end = Reader.nextInt();
-				g[start].add(end);
-				//g[end].add(start); //If the graph is not directed.
-			}
-			
-			int res = bfs(g,0); //example usage
-			System.out.println(res);
-		}
-	}
+	
+	
+//	public static void main(String[] args) throws IOException {
+//		Reader.init(System.in);
+//		int n = Reader.nextInt();
+//
+//		for (int i = 0; i < n; i++) {
+//			int nV = Reader.nextInt();
+//			int nE = Reader.nextInt();
+//			List<Integer>[] g = new List[nV];
+//
+//			for (int j = 0; j < g.length; j++) {
+//				g[j] = new ArrayList<>();
+//			}
+//
+//			for (int j = 0; j < nE; j++) {
+//				int start = Reader.nextInt();
+//				int end = Reader.nextInt();
+//				g[start].add(end);
+//				//g[end].add(start); //If the graph is not directed.
+//			}
+//			
+//			int res = bfs(g,0); 
+//			System.out.println(res);
+//		}
+//	}
 
 }

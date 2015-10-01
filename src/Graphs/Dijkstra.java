@@ -53,31 +53,31 @@ public class Dijkstra {
 		}
 	}
 
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		int n = in.nextInt();
-		
-		for (int i = 0; i < n; i++) {
-
-			int nV = in.nextInt();
-			int nE = in.nextInt();
-			int source = in.nextInt() - 1;
-			V[] vertices = new V[nV];
-			E[] edges = new E[nE];
-
-			for (int j = 0; j < nV; j++) {
-				vertices[j] = new V(j);
-			}
-
-			for (int j = 0; j < nE; j++) {
-				int end = in.nextInt() - 1;
-				int start = in.nextInt() - 1;
-				double w = in.nextDouble();
-				edges[j] = new E(vertices[end], w);
-				vertices[start].adj.add(edges[j]);
-			}
-
-			compute(vertices[source]);
-		}
-	}
+//	public static void main(String[] args) {
+//		Reader.init(System.in);
+//		int n = Reader.nextInt();
+//		
+//		for (int i = 0; i < n; i++) {
+//
+//			int nV = Reader.nextInt();
+//			int nE = Reader.nextInt();
+//			int source = Reader.nextInt() - 1;
+//			V[] vertices = new V[nV];
+//			E[] edges = new E[nE];
+//
+//			for (int j = 0; j < nV; j++) {
+//				vertices[j] = new V(j);
+//			}
+//
+//			for (int j = 0; j < nE; j++) {
+//				int end = Reader.nextInt() - 1;
+//				int start = Reader.nextInt() - 1;
+//				double w = Reader.nextDouble();
+//				edges[j] = new E(vertices[end], w);
+//				vertices[start].adj.add(edges[j]);
+//			}
+//
+//			compute(vertices[source]);
+//		}
+//	}
 }
