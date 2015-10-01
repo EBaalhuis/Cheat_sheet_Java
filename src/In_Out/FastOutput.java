@@ -1,6 +1,6 @@
 package In_Out;
 
-//Only use if you need to print >100 000 lines
+//Only use if you need to print many lines per test case.
 public class FastOutput {
 	
 	public static void main(String[] args) {

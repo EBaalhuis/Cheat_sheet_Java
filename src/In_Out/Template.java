@@ -10,10 +10,10 @@ import java.util.StringTokenizer;
 public class Template {
 		
 	public static void main(String[] args)  throws IOException{
-		Reader.init(System.in);
+		in.init(System.in);
 	}
 	
-	static class Reader {
+	static class in {
 	    static BufferedReader reader;
 	    static StringTokenizer tokenizer;
 
@@ -40,5 +40,3 @@ public class Template {
 	    }
 	}
 }
-
-//Add class Reader here.
