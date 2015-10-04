@@ -6,26 +6,27 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// Solve the Knapsack problem with O(n*c) time and O(c) space.
 public class Knapsack {
 	public static void main(String[] args)  throws IOException{
 		in.init(System.in);
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
-			int n = in.nextInt();
+			int nItems = in.nextInt();
 			int cap = in.nextInt();
-			int[] v = new int[n];
-			int[] c = new int[n];
-			for (int j = 0; j < n; j++) {
+			int[] v = new int[nItems];
+			int[] c = new int[nItems];
+			for (int j = 0; j < nItems; j++) {
 				v[j] = in.nextInt();
 			}
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < nItems; j++) {
 				c[j] = in.nextInt();
 			}
 			
 			int[] dp = new int[cap+1];
 			
-			for (int j = 1; j < n+1; j++) {
+			for (int j = 1; j < nItems+1; j++) {
 				for (int j2 = cap; j2 >= 0; j2--) {
 					if (c[j-1] <= j2) {
 						dp[j2] = Math.max(dp[j2], dp[j2-c[j-1]]+v[j-1]);
@@ -34,7 +35,7 @@ public class Knapsack {
 				}
 			}
 			
-			System.out.println(dp[cap]);
+			System.out.println(dp[cap]); //shows the max possible value
 		}
 	}
 	
