@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 // Some miscellaneous useful methods
-public class Basics {
+public class Misc {
 
 	// Given a List<Integer> list remove an element with value i.
 	// Note that list.remove(i) removes the element at index i.
