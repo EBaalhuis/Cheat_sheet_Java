@@ -15,7 +15,7 @@ public class BFS {
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(start);
 		
-		if (true) { // check if start is what you are looking for.
+		if () { // check if start is what you are looking for.
 			return start;
 		}
 
@@ -23,7 +23,7 @@ public class BFS {
 			int u = q.poll();
 			for (int v : graph[u]) {
 				if (!visited[v]) {
-					if (true) { // check if v is what you are looking for.
+					if () { // check if v is what you are looking for.
 						return v;
 					}
 					visited[v] = true;
