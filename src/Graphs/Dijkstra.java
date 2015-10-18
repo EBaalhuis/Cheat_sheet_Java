@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
-
-
 public class Dijkstra {
 
 	static class V implements Comparable<V> {

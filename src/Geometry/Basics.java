@@ -1,7 +1,5 @@
 package Geometry;
 
-import java.util.Scanner;
-
 public class Basics {
 
 	public static double[] crossProduct(double[] u, double[] v) {
@@ -30,7 +28,7 @@ public class Basics {
 	}
 
 	// Line given by two points (l1x, l1y) and (l2x,l2y).
-	// Check if point 1 (p1x,p1y) and point2 (p2x,p2y) are on the same side.
+	// Check if point1 (p1x,p1y) and point2 (p2x,p2y) are on the same side.
 	public static boolean sameSide(double p1x, double p1y, double p2x, double p2y, double l1x, double l1y, double l2x,
 			double l2y) {
 		double[] u = new double[] { l2x - l1x, l2y - l1y, 0 };
