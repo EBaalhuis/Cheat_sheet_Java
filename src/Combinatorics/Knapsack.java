@@ -8,9 +8,9 @@ import java.util.StringTokenizer;
 
 // Solve the Knapsack problem with O(n*c) time and O(c) space.
 public class Knapsack {
-	public static void main(String[] args)  throws IOException{
+	public static void main(String[] args) throws IOException {
 		in.init(System.in);
-		
+
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
 			int nItems = in.nextInt();
@@ -23,46 +23,41 @@ public class Knapsack {
 			for (int j = 0; j < nItems; j++) {
 				c[j] = in.nextInt();
 			}
-			
-			int[] dp = new int[cap+1];
-			
-			for (int j = 1; j < nItems+1; j++) {
-				for (int j2 = cap; j2 >= 0; j2--) {
-					if (c[j-1] <= j2) {
-						dp[j2] = Math.max(dp[j2], dp[j2-c[j-1]]+v[j-1]);
-					} else
-						dp[j2] = dp[j2];
+
+			int[] dp = new int[cap + 1];
+
+			for (int j = 0; j < nItems ; j++) {
+				for (int j2 = cap; j2 >= c[j]; j2--) {
+					dp[j2] = Math.max(dp[j2], dp[j2 - c[j]] + v[j]);
 				}
 			}
-			
-			System.out.println(dp[cap]); //shows the max possible value
+
+			System.out.println(dp[cap]); // shows the max possible value
 		}
 	}
-	
+
 	static class in {
-	    static BufferedReader reader;
-	    static StringTokenizer tokenizer;
+		static BufferedReader reader;
+		static StringTokenizer tokenizer;
 
-	    static void init(InputStream input) {
-	        reader = new BufferedReader(
-	                     new InputStreamReader(input) );
-	        tokenizer = new StringTokenizer("");
-	    }
+		static void init(InputStream input) {
+			reader = new BufferedReader(new InputStreamReader(input));
+			tokenizer = new StringTokenizer("");
+		}
 
-	    static String next() throws IOException {
-	        while ( ! tokenizer.hasMoreTokens() ) {
-	            tokenizer = new StringTokenizer(
-	                   reader.readLine() );
-	        }
-	        return tokenizer.nextToken();
-	    }
+		static String next() throws IOException {
+			while (!tokenizer.hasMoreTokens()) {
+				tokenizer = new StringTokenizer(reader.readLine());
+			}
+			return tokenizer.nextToken();
+		}
 
-	    static int nextInt() throws IOException {
-	        return Integer.parseInt( next() );
-	    }
-		
-	    static double nextDouble() throws IOException {
-	        return Double.parseDouble( next() );
-	    }
+		static int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		static double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
 	}
 }
