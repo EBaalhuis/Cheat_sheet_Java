@@ -9,8 +9,8 @@ public class Misc {
 	int i = 0;
 	boolean res = list.remove(Integer.valueOf(i));
 
-	// Given a String s with a hex number, return that number as a long.
-	String hexNr = "1a8fd0c";
+	// Convert between hex and decimal.
+	String hexNr = "a02f";
 	long number = Long.parseLong(hexNr, 16);
-
+	String hex = Long.toHexString(number);
 }

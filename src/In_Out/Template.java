@@ -8,35 +8,33 @@ import java.util.StringTokenizer;
 
 //Template for every solution.
 public class Template {
-		
-	public static void main(String[] args)  throws IOException{
+
+	public static void main(String[] args) throws IOException {
 		in.init(System.in);
 	}
-	
+
 	static class in {
-	    static BufferedReader reader;
-	    static StringTokenizer tokenizer;
+		static BufferedReader reader;
+		static StringTokenizer tokenizer;
 
-	    static void init(InputStream input) {
-	        reader = new BufferedReader(
-	                     new InputStreamReader(input) );
-	        tokenizer = new StringTokenizer("");
-	    }
+		static void init(InputStream input) {
+			reader = new BufferedReader(new InputStreamReader(input));
+			tokenizer = new StringTokenizer("");
+		}
 
-	    static String next() throws IOException {
-	        while ( ! tokenizer.hasMoreTokens() ) {
-	            tokenizer = new StringTokenizer(
-	                   reader.readLine() );
-	        }
-	        return tokenizer.nextToken();
-	    }
+		static String next() throws IOException {
+			while (!tokenizer.hasMoreTokens()) {
+				tokenizer = new StringTokenizer(reader.readLine());
+			}
+			return tokenizer.nextToken();
+		}
 
-	    static int nextInt() throws IOException {
-	        return Integer.parseInt( next() );
-	    }
-		
-	    static double nextDouble() throws IOException {
-	        return Double.parseDouble( next() );
-	    }
+		static int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		static double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
 	}
 }

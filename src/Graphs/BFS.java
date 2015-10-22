@@ -32,7 +32,7 @@ public class BFS {
 			}
 		}
 		
-		return -1;
+		return -1; // did not find any node that satisfies the requirement.
 	}
 	
 	

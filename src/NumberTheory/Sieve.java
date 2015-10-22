@@ -33,6 +33,5 @@ public class Sieve {
 			}
 		}
 		return res;
-
 	}
 }

@@ -1,5 +1,4 @@
 package NumberTheory;
-import java.util.*;
 
 public class Euclid_gcd {
 	
