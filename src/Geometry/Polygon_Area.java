@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 //Find the area of any polygon in 2d. Points must be in cw or ccw order.
 public class Polygon_Area {
 
-	public static double area(double[] xcoord, double[] ycoord) {
+	static double area(double[] xcoord, double[] ycoord) {
 		double res = 0;
 		for (int i = 0; i < xcoord.length - 1; i++) {
 			res += xcoord[i] * ycoord[i + 1] - xcoord[i + 1] * ycoord[i];

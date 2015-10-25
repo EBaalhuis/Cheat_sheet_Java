@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Sieve {
 
 	// return ArrayList<Integer> of all primes <= n.
-	public static ArrayList<Integer> sieve(int n) {
+	static ArrayList<Integer> sieve(int n) {
 		ArrayList<Integer> res = new ArrayList<Integer>();
 		boolean[] notPrime = new boolean[n + 1];
 		for (int i = 2; i <= n; i++) {
@@ -20,7 +20,7 @@ public class Sieve {
 	}
 
 	// return boolean[n+1] a where a[b] = true iff b is prime.
-	public static boolean[] sieve2(int n) {
+	static boolean[] sieve2(int n) {
 		boolean[] res = new boolean[n + 1];
 		for (int i = 2; i < res.length; i++) {
 			res[i] = true;

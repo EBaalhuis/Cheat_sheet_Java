@@ -5,7 +5,7 @@ import java.util.*;
 
 public class PrimeDecomposition {
 	
-	public static List<Long> primeFactors(long a) {
+	static List<Long> primeFactors(long a) {
 		List<Long> res = new ArrayList<Long>();
 		while (a % 2 == 0) {
 			res.add((long) 2);

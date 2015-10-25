@@ -3,13 +3,13 @@ package NumberTheory;
 public class Euclid_gcd {
 
 	// Euclid's algorithm to find gcd.
-	public static int gcd(int p, int q) {
+	static int gcd(int p, int q) {
 		return q == 0 ? Math.abs(p) : gcd(q, p % q);
 	}
 
 	// Extended Euclid's algorithm.
 	// Returns array [d, a, b] such that d = gcd(p, q), ap + bq = d.
-	public static int[] extgcd(int p, int q) {
+	static int[] extgcd(int p, int q) {
 		if (q == 0) {
 			return new int[] { Math.abs(p), Integer.signum(p), 0 };
 		}

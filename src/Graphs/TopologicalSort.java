@@ -15,7 +15,7 @@ public class TopologicalSort {
 		res.add(u);
 	}
 
-	public static List<Integer> topologicalSort(List<Integer>[] graph) {
+	static List<Integer> topologicalSort(List<Integer>[] graph) {
 		int n = graph.length;
 		boolean[] used = new boolean[n];
 		List<Integer> res = new ArrayList<>();

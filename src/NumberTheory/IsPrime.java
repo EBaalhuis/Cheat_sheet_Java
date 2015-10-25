@@ -3,7 +3,7 @@ package NumberTheory;
 //Efficient primality test.
 public class IsPrime {
 
-	boolean isPrime(long n) {
+	static boolean isPrime(long n) {
 		if (n < 2)
 			return false;
 		if (n == 2 || n == 3)

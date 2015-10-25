@@ -35,7 +35,7 @@ public class Dijkstra {
 		}
 	}
 	
-	public static void compute(V source) {
+	static void compute(V source) {
 		source.dist = 0.;
 		PriorityQueue<V> vQue = new PriorityQueue<V>();
 		vQue.add(source);
@@ -87,6 +87,7 @@ public class Dijkstra {
 		}
 	}
 	
+	// Class in only for testing.
 	static class in {
 	    static BufferedReader reader;
 	    static StringTokenizer tokenizer;

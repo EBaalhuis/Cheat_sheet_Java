@@ -10,6 +10,6 @@ public class FastOutput {
 		sb.append(String.format("%d %f\n", 1, 0.5));
 		
 		//Print whole sb
-		System.out.print(sb);
+		System.out.print(sb.toString());
 	}
 }

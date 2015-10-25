@@ -1,6 +1,10 @@
 //Find strongly connected components of a graph.
 //O(E + V)
 package Graphs;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Tarjan {
@@ -11,7 +15,7 @@ public class Tarjan {
 	int[] lowlink;
 	List<List<Integer>> components;
 
-	public List<List<Integer>> scc(List<Integer>[] graph) {
+	List<List<Integer>> scc(List<Integer>[] graph) {
 		int n = graph.length;
 		this.graph = graph;
 		visited = new boolean[n];
@@ -55,29 +59,55 @@ public class Tarjan {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		in.init(System.in);
-//		int n = in.nextInt();
-//
-//		for (int i = 0; i < n; i++) {
-//			int nV = in.nextInt();
-//			int nE = in.nextInt();
-//			List<Integer>[] g = new List[nV];
-//			
-//			for (int j = 0; j < g.length; j++) {
-//				g[j] = new ArrayList<>();
-//			}
-//			
-//			for (int j = 0; j < nE; j++) {
-//				int start = in.nextInt();
-//				int end = in.nextInt();
-//				g[start].add(end);
-//				//g[end].add(start); //If the graph is not directed.
-//			}
-//			
-//			List<List<Integer>> components = new Tarjan().scc(g);
-//			//System.out.println(components); //Print array of components.
-//			//System.out.println(components.size()); //Print number of components.
-//		}
-//	}
+	public static void main(String[] args) throws IOException {
+		in.init(System.in);
+		int n = in.nextInt();
+
+		for (int i = 0; i < n; i++) {
+			int nV = in.nextInt();
+			int nE = in.nextInt();
+			List<Integer>[] g = new List[nV];
+			
+			for (int j = 0; j < g.length; j++) {
+				g[j] = new ArrayList<>();
+			}
+			
+			for (int j = 0; j < nE; j++) {
+				int start = in.nextInt();
+				int end = in.nextInt();
+				g[start].add(end);
+				//g[end].add(start); //If the graph is not directed.
+			}
+			
+			List<List<Integer>> components = new Tarjan().scc(g);
+			//System.out.println(components); //Print array of components.
+			//System.out.println(components.size()); //Print number of components.
+		}
+	}
+	
+	// Class in only for testing.
+	static class in {
+		static BufferedReader reader;
+		static StringTokenizer tokenizer;
+
+		static void init(InputStream input) {
+			reader = new BufferedReader(new InputStreamReader(input));
+			tokenizer = new StringTokenizer("");
+		}
+
+		static String next() throws IOException {
+			while (!tokenizer.hasMoreTokens()) {
+				tokenizer = new StringTokenizer(reader.readLine());
+			}
+			return tokenizer.nextToken();
+		}
+
+		static int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		static double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
+	}
 }

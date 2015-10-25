@@ -3,7 +3,7 @@ package Graphs;
 import java.util.*;
 
 public class DFS {
-	public static int dfs(List<Integer>[] graph, int start) {
+	static int dfs(List<Integer>[] graph, int start) {
 		int n = graph.length;
 		boolean[] used = new boolean[n];
 		List<Integer> res = new ArrayList<>();	
@@ -17,7 +17,8 @@ public class DFS {
 		return -1; // did not find any node that satisfies the requirement.
 	}
 
-	public static void dfsrec(List<Integer>[] graph, boolean[] used,
+	// Used internally for dfs.
+	static void dfsrec(List<Integer>[] graph, boolean[] used,
 	List<Integer> res, 	int u) {
 		used[u] = true;
 		for (int v : graph[u])

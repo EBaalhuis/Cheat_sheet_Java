@@ -8,7 +8,7 @@ import java.util.*;
 
 public class BFS {
 
-	public static int bfs(List<Integer>[] graph, int start) {
+	static int bfs(List<Integer>[] graph, int start) {
 		int size = graph.length;
 		boolean[] visited = new boolean[size];
 		visited[start] = true;
@@ -35,30 +35,56 @@ public class BFS {
 		return -1; // did not find any node that satisfies the requirement.
 	}
 	
-	
-//	public static void main(String[] args) throws IOException {
-//		in.init(System.in);
-//		int n = in.nextInt();
-//
-//		for (int i = 0; i < n; i++) {
-//			int nV = in.nextInt();
-//			int nE = in.nextInt();
-//			List<Integer>[] g = new List[nV];
-//
-//			for (int j = 0; j < g.length; j++) {
-//				g[j] = new ArrayList<>();
-//			}
-//
-//			for (int j = 0; j < nE; j++) {
-//				int start = in.nextInt();
-//				int end = in.nextInt();
-//				g[start].add(end);
-//				//g[end].add(start); //If the graph is not directed.
-//			}
-//			
-//			int res = bfs(g,0); 
-//			System.out.println(res);
-//		}
-//	}
+	// Method main only for testing.
+	public static void main(String[] args) throws IOException {
+		in.init(System.in);
+		int n = in.nextInt();
+
+		for (int i = 0; i < n; i++) {
+			int nV = in.nextInt();
+			int nE = in.nextInt();
+			List<Integer>[] g = new List[nV];
+
+			for (int j = 0; j < g.length; j++) {
+				g[j] = new ArrayList<>();
+			}
+
+			for (int j = 0; j < nE; j++) {
+				int start = in.nextInt();
+				int end = in.nextInt();
+				g[start].add(end);
+				//g[end].add(start); //If the graph is not directed.
+			}
+			
+			int res = bfs(g,0); 
+			System.out.println(res);
+		}
+	}
+
+	// Class in only for testing.
+	static class in {
+		static BufferedReader reader;
+		static StringTokenizer tokenizer;
+
+		static void init(InputStream input) {
+			reader = new BufferedReader(new InputStreamReader(input));
+			tokenizer = new StringTokenizer("");
+		}
+
+		static String next() throws IOException {
+			while (!tokenizer.hasMoreTokens()) {
+				tokenizer = new StringTokenizer(reader.readLine());
+			}
+			return tokenizer.nextToken();
+		}
+
+		static int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		static double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
+	}
 
 }

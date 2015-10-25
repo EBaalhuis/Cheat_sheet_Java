@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 //Given P[] of points, return Stack<P> with all points on convex hull
 //in ccw order (from the bottom of the stack up).
 public class Graham_Scan {
-	public static Stack<P> compute(P[] points) {
+	static Stack<P> compute(P[] points) {
 		double minX = Double.MAX_VALUE;
 		double minY = Double.MAX_VALUE;
 
@@ -56,7 +56,7 @@ public class Graham_Scan {
 		return s;
 	}
 
-	public static double ccw(P a, P b, P c) {
+	static double ccw(P a, P b, P c) {
 		return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 	}
 

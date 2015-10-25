@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 //Given number of vertices nV and E[] edges,
 //returns a list of edges that form a minimum spanning tree.
 public class Kruskal {
-	public static ArrayList<E> compute(int nV,E[] edges) {
+	static ArrayList<E> compute(int nV,E[] edges) {
 		ArrayList<E> res = new ArrayList<E>();
 		UnionFind uni = new UnionFind(nV);
 		PriorityQueue<E> q = new PriorityQueue<E>();
