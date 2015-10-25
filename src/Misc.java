@@ -13,4 +13,8 @@ public class Misc {
 	String hexNr = "a02f";
 	long number = Long.parseLong(hexNr, 16);
 	String hex = Long.toHexString(number);
+
+	// To get the actual modulo of negative number (being a positive result).
+	int a, b;
+	int modulo = (a % b + b) % b;
 }
