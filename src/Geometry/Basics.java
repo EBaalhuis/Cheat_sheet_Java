@@ -19,11 +19,12 @@ public class Basics {
 	}
 
 	// Line given by point 1 (p1x,p1y) and point2 (p2x,p2y).
-	// Return double[2] with a, b such that l : y = a*x + b.
+	// Return double[3] with a, b, c such that l : ax + by = c.
 	static double[] lineParam(double p1x, double p1y, double p2x, double p2y) {
-		double[] res = new double[2];
-		res[0] = (p2y - p1y) / (p2x - p1x);
-		res[1] = p1y - (res[0] * p1x);
+		double[] res = new double[3];
+		res[0] = p2y - p1y;
+		res[1] = p1x - p2x;
+		res[2] = res[0] * p1x + res[1] * p1y;
 		return res;
 	}
 
