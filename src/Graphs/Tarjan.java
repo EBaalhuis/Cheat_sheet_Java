@@ -1,5 +1,3 @@
-//Find strongly connected components of a graph.
-//O(E + V)
 package Graphs;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
+//Find strongly connected components of a graph.
+//O(E + V)
 public class Tarjan {
 	List<Integer>[] graph;
 	boolean[] visited;
