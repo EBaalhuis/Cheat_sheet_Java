@@ -1,64 +1,62 @@
+// Alternative implementation, appears to be no faster.
+// Not yet using PriorityQueue for vertices (this is important for speed).
 package Graphs;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
-public class BFS {
+public class Dijkstra2 {
 
-	// O(E)
-	static int bfs(List<Integer>[] graph, int start) {
-		int size = graph.length;
-		boolean[] visited = new boolean[size];
-		visited[start] = true;
-		Queue<Integer> q = new LinkedList<Integer>();
-		q.add(start);
-		
-		if (true) { // check if start is what you are looking for.
-			return start;
-		}
+	static void compute(int source, int[] dist, List<int[]>[] g) {
+		dist[source] = 0;
+		PriorityQueue<Integer> vQue = new PriorityQueue<>();
+		vQue.add(source);
+		int[] prev = new int[dist.length];
 
-		while (!q.isEmpty()) {
-			int u = q.poll();
-			for (int v : graph[u]) {
-				if (!visited[v]) {
-					if (true) { // check if v is what you are looking for.
-						return v;
-					}
-					visited[v] = true;
-					q.add(v);
+		while (!vQue.isEmpty()) {
+			int u = vQue.poll();
+
+			for (int[] e : g[u]) {
+				int v = e[0];
+				int w = e[1];
+				int uDist = dist[u] + w;
+				if (uDist < dist[v]) {
+					vQue.remove(v);
+					dist[v] = uDist;
+					prev[v] = u;
+					vQue.add(v);
 				}
 			}
 		}
-		
-		return -1; // did not find any node that satisfies the requirement.
 	}
-	
-	// Method main only for testing.
+
 	public static void main(String[] args) throws IOException {
 		in.init(System.in);
 		int n = in.nextInt();
 
 		for (int i = 0; i < n; i++) {
+
 			int nV = in.nextInt();
 			int nE = in.nextInt();
-			List<Integer>[] g = new List[nV];
+			int source = in.nextInt() - 1;
 
+			List<int[]>[] g = new List[nV];
 			for (int j = 0; j < g.length; j++) {
 				g[j] = new ArrayList<>();
 			}
-
 			for (int j = 0; j < nE; j++) {
-				int start = in.nextInt();
-				int end = in.nextInt();
-				g[start].add(end);
-				//g[end].add(start); //If the graph is not directed.
+				int start = in.nextInt() - 1;
+				int end = in.nextInt() - 1;
+				int w = in.nextInt();
+				int[] e1 = { end, w };
+				int[] e2 = { start, w };
+				g[start].add(e1);
+				g[end].add(e2); // If the graph is not directed.
 			}
+			int[] dist = new int[nV];
+			Arrays.fill(dist, Integer.MAX_VALUE);
 			
-			int res = bfs(g,0); 
-			System.out.println(res);
+			compute(source, dist, g);
 		}
 	}
 
@@ -87,5 +85,4 @@ public class BFS {
 			return Double.parseDouble(next());
 		}
 	}
-
 }

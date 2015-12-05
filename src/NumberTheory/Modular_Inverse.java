@@ -13,6 +13,9 @@ public class Modular_Inverse {
 	// Compute inverse of a in Z/rZ, with a and r co-prime.
 	// If they are not co-prime, inverse does not exist.
 	static int modInv(int a, int r) {
+		if (extgcd(a, r)[0] != 1) {
+			return -1;
+		}
 		return (extgcd(a, r)[1] + r) % r;
 	}
 

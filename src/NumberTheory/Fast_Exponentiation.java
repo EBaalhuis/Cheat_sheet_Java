@@ -37,8 +37,8 @@ public class Fast_Exponentiation {
 	// main method only for testing.
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int a = in.nextInt();
-		int b = in.nextInt();
+		long a = in.nextInt();
+		long b = in.nextInt();
 		
 		long time1 = System.nanoTime();
 		long e = exp(a, b);

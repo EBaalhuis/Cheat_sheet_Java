@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class Two_Color {
 	
-	// Given a graph, returns true if it is 2-colorable.
+	// Given a graph, returns true if it is 2-colorable. O(E).
 	static boolean twoColor(List<Integer>[] graph) {
 		int size = graph.length;
 		boolean[] visited = new boolean[size];

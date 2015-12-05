@@ -13,6 +13,11 @@ public class Misc {
 	String hexNr = "a02f";
 	long number = Long.parseLong(hexNr, 16);
 	String hex = Long.toHexString(number);
+	
+	// Decimal to binary and back.
+	int x = 100;
+	String binary = Integer.toBinaryString(x);
+	int y = Integer.parseInt(binary, 2);
 
 	// To get the actual modulo of negative number (being a positive result).
 	int a, b;
