@@ -22,4 +22,15 @@ public class Misc {
 	// To get the actual modulo of negative number (being a positive result).
 	int a, b;
 	int modulo = (a % b + b) % b;
+	
+	// Distance between two binary numbers (nr of bits which are different)
+	public static int difference(int num1, int num2) {
+		int count = 0;
+		int xor = num1 ^ num2;
+		while (xor != 0) {
+			count++;
+			xor &= xor - 1;
+		}
+		return count;
+	}
 }
