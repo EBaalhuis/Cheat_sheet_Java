@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 
 //Given number of vertices nV and E[] edges,
 //returns a list of edges that form a minimum spanning tree.
+//O(E log E)
 public class Kruskal {
 	static ArrayList<E> compute(int nV,E[] edges) {
 		ArrayList<E> res = new ArrayList<E>();

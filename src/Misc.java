@@ -23,7 +23,7 @@ public class Misc {
 	int a, b;
 	int modulo = (a % b + b) % b;
 	
-	// Distance between two binary numbers (nr of bits which are different)
+	// Distance between two binary numbers (number of bits which are different)
 	public static int difference(int num1, int num2) {
 		int count = 0;
 		int xor = num1 ^ num2;
