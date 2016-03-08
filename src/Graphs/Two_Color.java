@@ -1,8 +1,13 @@
 package Graphs;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Scanner;
+
+import Graphs.Tarjan.in;
 
 public class Two_Color {
 	
@@ -38,5 +43,24 @@ public class Two_Color {
 			}
 		}
 		return true;
+	}
+	
+	// Example driver function
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int nV = in.nextInt();
+		int nE = in.nextInt();
+		
+		List<Integer>[] adj = new List[nV];
+		for (int i = 0; i < nV; i++) {
+			adj[i] = new ArrayList<Integer>();
+		}
+		
+		for (int i = 0; i < nE; i++) {
+			int start = in.nextInt();
+			int end = in.nextInt();
+			adj[start].add(end);
+			adj[end].add(start); // This line for undirected graphs
+		}
 	}
 }
