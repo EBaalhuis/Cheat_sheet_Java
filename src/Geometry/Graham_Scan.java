@@ -61,8 +61,8 @@ public class Graham_Scan {
 	}
 
 	static class P implements Comparable<P> {
-		public double x;
-		public double y;
+		public int x;
+		public int y;
 		public double slope;
 
 		public P(int a, int b) {
