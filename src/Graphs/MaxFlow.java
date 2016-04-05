@@ -1,6 +1,7 @@
 package Graphs;
 import java.util.*;
 
+// Might need optimization
 public class MaxFlow {
     static class Node {
         int n;
