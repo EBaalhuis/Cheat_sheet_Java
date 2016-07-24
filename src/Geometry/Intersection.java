@@ -1,5 +1,6 @@
 package Geometry;
 
+
 public class Intersection {
 
 	// Given two lines according to lineParam, returns their point of
@@ -38,10 +39,10 @@ public class Intersection {
 	}
 
 	// Checks if a point p is on the line segment ab.
-	static boolean onSegment(Point a, Point b, Point p) {
-		return (p.x <= Math.max(a.x, b.x) && p.x >= Math.min(a.x, b.x) && p.y <= Math.max(a.y, b.y)
-				&& p.y >= Math.min(a.y, b.y));
-	}
+		static boolean onSegment(Point a, Point b, Point p) {
+			return ((p.x <= Math.max(a.x, b.x) && p.x >= Math.min(a.x, b.x) && p.y <= Math.max(a.y, b.y)
+					&& p.y >= Math.min(a.y, b.y)) && orientation(a,b,p) == 0);
+		}
 
 	// Returns the orientation of the triplet (p,q,r). 0 = colinear, 1 =
 	// clockwise, 2 = ccw.
