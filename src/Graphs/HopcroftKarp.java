@@ -8,6 +8,7 @@ import java.util.*;
 
 // Hopcroft-Karp algorithm for bipartite maximum matching. 
 // O(sqrt(V) * E)
+// Note that the size of max matching = size of min cover.
 public class HopcroftKarp {
 
 	public static class bipartiteGraph {
