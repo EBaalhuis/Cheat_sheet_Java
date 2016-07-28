@@ -2,6 +2,8 @@
 
 import java.util.Arrays;
 
+// All pairs shortest path. O(V^3).
+// Negative weights allowed, but no negative cycles!
 public class FloydWarshall {
 
 	static int[][] floydWarshall(int graph[][]) {
