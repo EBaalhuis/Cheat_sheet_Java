@@ -5,12 +5,10 @@ package DataStructures;
 public class UnionFind {
 	private int[] parent;
 	private int[] rank;
-	public int nSets;
 	
 	public UnionFind(int size) {
 		parent = new int[size];
 		rank = new int[size];
-		nSets = size;
 		for (int i = 0; i < parent.length; i++) {
 			parent[i] = i;
 		}
@@ -32,7 +30,6 @@ public class UnionFind {
 			parent[yRoot] = xRoot;
 			rank[xRoot]++;
 		}
-		nSets--;
 	}
 	
 	public int find(int x) {
