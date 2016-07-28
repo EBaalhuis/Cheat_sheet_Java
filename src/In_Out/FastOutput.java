@@ -1,15 +1,13 @@
 package In_Out;
 
+import java.io.*;
+
 //Only use if you need to print many lines per test case.
 public class FastOutput {
 	
-	public static void main(String[] args) {
-		StringBuilder sb = new StringBuilder();
-		
-		//Append lines to sb
-		sb.append(String.format("%d %f\n", 1, 0.5));
-		
-		//Print whole sb
-		System.out.print(sb.toString());
-	}
+	public static void main(String[] args) throws IOException {
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+		out.write("A line\n");
+		out.flush();
+		}
 }
