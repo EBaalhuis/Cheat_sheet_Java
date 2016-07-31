@@ -20,8 +20,8 @@ public class Dijkstra {
 			adj = new ArrayList<E>();
 		}
 
-		public int compareTo(V other) {
-			return Double.compare(dist, other.dist);
+		public int compareTo(V o) {
+			return Double.compare(dist, o.dist);
 		}
 	}
 
