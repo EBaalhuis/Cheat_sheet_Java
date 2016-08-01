@@ -25,7 +25,7 @@ public class Simultaneous_Cong {
 			x += m[i] * N[i];
 		}
 		
-		return x % p;
+		return ((x % p) + p) % p;
 	}
 	
 	// Required by SC
