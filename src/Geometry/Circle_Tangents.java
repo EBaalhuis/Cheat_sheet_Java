@@ -1,6 +1,6 @@
 package Geometry;
 
-public class Circle_tangents {
+public class Circle_Tangents {
 	
 	// Input two circles by [x, y, r]. Returns [phi, delta] such
 	// that the angels of the outer tangents are phi +/- delta.
