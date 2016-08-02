@@ -15,6 +15,11 @@ public class Combinations {
 		}
 		return a;
 	}
+	
+	// Calculate the n-th Catalan number
+	static BigInteger cat(int n) {
+		return ncr(2*n,n).divide(BigInteger.valueOf(n+1));
+	}
 
 	// main method only for testing
 	public static void main(String[] args) {
