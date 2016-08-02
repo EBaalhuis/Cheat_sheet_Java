@@ -1,18 +1,28 @@
-package In_Out;
+import java.io.*;
+import java.util.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
-//Template for every solution.
-public class Template {
-
+// Generate all permutations of a set (of integers).
+public class Permute_Set {
+	static HashSet<Integer[]> permute(List<Integer> arr, int k) {
+		HashSet<Integer[]> set = new HashSet<>();
+		for (int i = k; i < arr.size(); i++) {
+			Collections.swap(arr, i, k);
+			set.addAll(permute(arr, k + 1));
+			Collections.swap(arr, k, i);
+		}
+		if (k == arr.size() - 1) {
+			set.add((Integer[]) arr.toArray().clone());
+		}
+		return set;
+	}
+	
 	public static void main(String[] args) throws IOException {
 		in.init(System.in);
-	}
 
+		HashSet<Integer[]> set = permute(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9), 0);
+	}
+	
+	// Class in for testing
 	static class in {
 		static BufferedReader reader;
 		static StringTokenizer tokenizer;
@@ -31,6 +41,10 @@ public class Template {
 
 		static int nextInt() throws IOException {
 			return Integer.parseInt(next());
+		}
+
+		static long nextLong() throws IOException {
+			return Long.parseLong(next());
 		}
 
 		static double nextDouble() throws IOException {
