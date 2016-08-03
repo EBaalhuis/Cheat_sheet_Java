@@ -1,10 +1,10 @@
 package Dynamic_Programming;
 
-public class LCSubstring {
+public class Long_Comm_Substr {
 
 	// Given two strings, returns a longest common substring (i.e. consecutive).
 	// O(nm).
-	static String LCSubstring(String s, String t) {
+	static String LCS(String s, String t) {
 		int m = s.length();
 		int n = t.length();
 		int[][] L = new int[m][n];
@@ -33,6 +33,6 @@ public class LCSubstring {
 	public static void main(String[] args) {
 		String s = "ababaa";
 		String t = "baab";
-		System.out.println(LCSubstring(s, t));
+		System.out.println(LCS(s, t));
 	}
 }
