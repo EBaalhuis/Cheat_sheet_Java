@@ -1,10 +1,12 @@
 //Find shortest path from one source to each other vertex.
 //O(E + V logV)
 package Graphs;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Dijkstra {
@@ -58,14 +60,14 @@ public class Dijkstra {
 	}
 
 	public static void main(String[] args) throws IOException {
-		in.init(System.in);
-		int n = in.nextInt();
+		IO io = new IO(System.in);
+		int n = io.nextInt();
 		
 		for (int i = 0; i < n; i++) {
 
-			int nV = in.nextInt();
-			int nE = in.nextInt();
-			int source = in.nextInt() - 1;
+			int nV = io.nextInt();
+			int nE = io.nextInt();
+			int source = io.nextInt() - 1;
 			V[] vertices = new V[nV];
 			E[] edges = new E[2*nE]; // remove "2*" for directed graph
 
@@ -74,9 +76,9 @@ public class Dijkstra {
 			}
 
 			for (int j = 0; j < nE; j++) {
-				int start = in.nextInt() - 1;
-				int end = in.nextInt() - 1;
-				double w = in.nextDouble();
+				int start = io.nextInt() - 1;
+				int end = io.nextInt() - 1;
+				double w = io.nextDouble();
 				edges[2*j] = new E(vertices[end], w); // remove "2*" for directed graph
 				edges[2*j+1] = new E(vertices[start], w); // remove line for directed graph
 				vertices[start].adj.add(edges[2*j]); // remove "2*" for directed graph
@@ -85,33 +87,37 @@ public class Dijkstra {
 
 			compute(vertices[source]);
 		}
+		io.close();
 	}
 	
-	// Class in only for testing.
-	static class in {
-	    static BufferedReader reader;
-	    static StringTokenizer tokenizer;
+	// Class io only for testing.
+	static class IO extends PrintWriter {
+		static BufferedReader r;
+		static StringTokenizer t;
 
-	    static void init(InputStream input) {
-	        reader = new BufferedReader(
-	                     new InputStreamReader(input) );
-	        tokenizer = new StringTokenizer("");
-	    }
+		public IO(InputStream i) {
+			super(new BufferedOutputStream(System.out));
+			r = new BufferedReader(new InputStreamReader(i));
+			t = new StringTokenizer("");
+		}
 
-	    static String next() throws IOException {
-	        while ( ! tokenizer.hasMoreTokens() ) {
-	            tokenizer = new StringTokenizer(
-	                   reader.readLine() );
-	        }
-	        return tokenizer.nextToken();
-	    }
+		public String next() throws IOException {
+			while (!t.hasMoreTokens()) {
+				t = new StringTokenizer(r.readLine());
+			}
+			return t.nextToken();
+		}
 
-	    static int nextInt() throws IOException {
-	        return Integer.parseInt( next() );
-	    }
-		
-	    static double nextDouble() throws IOException {
-	        return Double.parseDouble( next() );
-	    }
+		public int nextInt() throws IOException{
+			return Integer.parseInt(next());
+		}
+
+		public long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+
+		public double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
 	}
 }
