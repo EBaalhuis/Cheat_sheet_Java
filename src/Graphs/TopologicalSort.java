@@ -7,21 +7,21 @@ import java.util.*;
 
 public class TopologicalSort {
 
-	static void dfs(List<Integer>[] graph, boolean[] used, List<Integer> res, int u) {
+	static void dfs(List<Integer>[] g, boolean[] used, List<Integer> res, int u) {
 		used[u] = true;
-		for (int v : graph[u])
+		for (int v : g[u])
 			if (!used[v])
-				dfs(graph, used, res, v);
+				dfs(g, used, res, v);
 		res.add(u);
 	}
 
-	static List<Integer> topologicalSort(List<Integer>[] graph) {
-		int n = graph.length;
+	static List<Integer> topSort(List<Integer>[] g) {
+		int n = g.length;
 		boolean[] used = new boolean[n];
 		List<Integer> res = new ArrayList<>();
 		for (int i = 0; i < n; i++)
 			if (!used[i])
-				dfs(graph, used, res, i);
+				dfs(g, used, res, i);
 		Collections.reverse(res);
 		return res;
 	}
@@ -46,7 +46,7 @@ public class TopologicalSort {
 				// g[end].add(start); //If the graph is not directed.
 			}
 
-			List<Integer> order = topologicalSort(g);
+			List<Integer> order = topSort(g);
 			// System.out.println(order); //Print array of components.
 		}
 	}
