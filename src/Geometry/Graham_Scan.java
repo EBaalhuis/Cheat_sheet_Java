@@ -73,7 +73,7 @@ public class Graham_Scan {
 
 		public void setSlope() {
 			if (x != 0) {
-				slope = y / x;
+				slope = (double) y / (double) x;
 			} else if (y > 0) {
 				slope = Double.MAX_VALUE;
 			} else {
