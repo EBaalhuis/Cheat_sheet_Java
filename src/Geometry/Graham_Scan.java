@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 
 //Find the convex hull of a set of points in 2d.
 //Given P[] of points, return Stack<P> with all points on convex hull
-//in ccw order (from the bottom of the stack up).
+//in ccw order (from the bottom of the stack up). O(V log V).
 public class Graham_Scan {
 	static Stack<P> compute(P[] points) {
 		double minX = Double.MAX_VALUE;
