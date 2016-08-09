@@ -96,6 +96,8 @@ public class Graham_Scan {
 		}
 
 		Stack<P> st = compute(points);
+		
+		System.out.println(st.size());
 	}
 
 	static class in {

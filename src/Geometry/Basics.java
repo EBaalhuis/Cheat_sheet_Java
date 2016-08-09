@@ -45,7 +45,7 @@ public class Basics {
 
 	// Triangle given by 3 points (ax, ay), (bx, by), (cx, cy). Return area.
 	static double areaTriangle(double ax, double ay, double bx, double by, double cx, double cy) {
-		return Math.abs(ax * (by - cy) + bx * (cy - ax) + cx * (ay - by)) / 2.;
+		return Math.abs(ax * (by - cy) + bx * (cy - ay) + cx * (ay - by)) / 2.;
 	}
 
 	// Triangle given by 3 points (ax, ay), (bx, by), (cx, cy).
