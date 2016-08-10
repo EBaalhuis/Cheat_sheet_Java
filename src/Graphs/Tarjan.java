@@ -1,47 +1,38 @@
 package Graphs;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 //Find strongly connected components of a graph.
 //O(E + V)
 public class Tarjan {
-	List<Integer>[] graph;
-	boolean[] visited;
-	Stack<Integer> stack;
-	int time;
-	int[] lowlink;
-	List<List<Integer>> components;
 
-	List<List<Integer>> scc(List<Integer>[] graph) {
-		int n = graph.length;
-		this.graph = graph;
-		visited = new boolean[n];
-		stack = new Stack<>();
-		time = 0;
-		lowlink = new int[n];
-		components = new ArrayList<>();
+	static List<List<Integer>> scc(List<Integer>[] g) {
+		int n = g.length;
+		boolean [] visited = new boolean[n];
+		Stack<Integer> st = new Stack<>();
+		int t = 0;
+		int[] link = new int[n];
+		List<List<Integer>> comp = new ArrayList<>();
 
-		for (int u = 0; u < n; u++)
-			if (!visited[u])
-				dfs(u);
-
-		return components;
+		for (int u = 0; u < n; u++) {
+			if (!visited[u]) {
+				dfs(u, link, t, visited, st, g, comp);
+			}
+		}
+		return comp;
 	}
 
-	void dfs(int u) {
-		lowlink[u] = time++;
+	static void dfs(int u, int[] link, int t, boolean[] visited, Stack<Integer> st, List<Integer>[] g, List<List<Integer>> comp) {
+		link[u] = t++;
 		visited[u] = true;
-		stack.add(u);
+		st.add(u);
 		boolean isComponentRoot = true;
 
-		for (int v : graph[u]) {
+		for (int v : g[u]) {
 			if (!visited[v])
-				dfs(v);
-			if (lowlink[u] > lowlink[v]) {
-				lowlink[u] = lowlink[v];
+				dfs(v, link, t, visited, st, g, comp);
+			if (link[u] > link[v]) {
+				link[u] = link[v];
 				isComponentRoot = false;
 			}
 		}
@@ -49,23 +40,24 @@ public class Tarjan {
 		if (isComponentRoot) {
 			List<Integer> component = new ArrayList<>();
 			while (true) {
-				int x = stack.pop();
+				int x = st.pop();
 				component.add(x);
-				lowlink[x] = Integer.MAX_VALUE;
+				link[x] = Integer.MAX_VALUE;
 				if (x == u)
 					break;
 			}
-			components.add(component);
+			comp.add(component);
 		}
 	}
 
+	// Example driver main
 	public static void main(String[] args) throws IOException {
-		in.init(System.in);
-		int n = in.nextInt();
+		IO io = new IO(System.in);
+		int n = io.nextInt();
 
 		for (int i = 0; i < n; i++) {
-			int nV = in.nextInt();
-			int nE = in.nextInt();
+			int nV = io.nextInt();
+			int nE = io.nextInt();
 			List<Integer>[] g = new List[nV];
 			
 			for (int j = 0; j < g.length; j++) {
@@ -73,40 +65,43 @@ public class Tarjan {
 			}
 			
 			for (int j = 0; j < nE; j++) {
-				int start = in.nextInt();
-				int end = in.nextInt();
+				int start = io.nextInt();
+				int end = io.nextInt();
 				g[start].add(end);
 				//g[end].add(start); //If the graph is not directed.
 			}
 			
-			List<List<Integer>> components = new Tarjan().scc(g);
-			//System.out.println(components); //Print array of components.
-			//System.out.println(components.size()); //Print number of components.
+			List<List<Integer>> components = scc(g);
 		}
 	}
 	
 	// Class in only for testing.
-	static class in {
-		static BufferedReader reader;
-		static StringTokenizer tokenizer;
+	static class IO extends PrintWriter {
+		static BufferedReader r;
+		static StringTokenizer t;
 
-		static void init(InputStream input) {
-			reader = new BufferedReader(new InputStreamReader(input));
-			tokenizer = new StringTokenizer("");
+		public IO(InputStream i) {
+			super(new BufferedOutputStream(System.out));
+			r = new BufferedReader(new InputStreamReader(i));
+			t = new StringTokenizer("");
 		}
 
-		static String next() throws IOException {
-			while (!tokenizer.hasMoreTokens()) {
-				tokenizer = new StringTokenizer(reader.readLine());
+		public String next() throws IOException {
+			while (!t.hasMoreTokens()) {
+				t = new StringTokenizer(r.readLine());
 			}
-			return tokenizer.nextToken();
+			return t.nextToken();
 		}
 
-		static int nextInt() throws IOException {
+		public int nextInt() throws IOException{
 			return Integer.parseInt(next());
 		}
 
-		static double nextDouble() throws IOException {
+		public long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+
+		public double nextDouble() throws IOException {
 			return Double.parseDouble(next());
 		}
 	}
