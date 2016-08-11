@@ -1,5 +1,5 @@
-//Find shortest path from one source to each other vertex.
-//O(E + V logV)
+// Find shortest path from one source to each other vertex.
+// O(E + V logV)
 package Graphs;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -17,8 +17,8 @@ public class Dijkstra {
 		public double dist = Double.POSITIVE_INFINITY;
 		public V prev;
 
-		public V(int nm) {
-			name = nm;
+		public V(int _n) {
+			name = _n;
 			adj = new ArrayList<E>();
 		}
 
@@ -31,29 +31,27 @@ public class Dijkstra {
 		public final V end;
 		public final double w;
 
-		public E(V argEnd, double argW) {
-			end = argEnd;
-			w = argW;
+		public E(V _e, double _w) {
+			end = _e;
+			w = _w;
 		}
 	}
 	
 	static void compute(V source) {
 		source.dist = 0.;
-		PriorityQueue<V> vQue = new PriorityQueue<V>();
-		vQue.add(source);
+		PriorityQueue<V> q = new PriorityQueue<>();
+		q.add(source);
 
-		while (!vQue.isEmpty()) {
-			V u = vQue.poll();
-
-			for (E e : u.adj) {
-				V v = e.end;
-				double w = e.w;
-				double uDist = u.dist + w;
-				if (uDist < v.dist) {
-					vQue.remove(v);
-					v.dist = uDist;
-					v.prev = u;
-					vQue.add(v);
+		while (!q.isEmpty()) {
+			V v = q.poll();
+			for (E e : v.adj) {
+				V u = e.end;
+				double uDist = v.dist + e.w;
+				if (uDist < u.dist) {
+					q.remove(u);
+					u.dist = uDist;
+					u.prev = v;
+					q.add(u);
 				}
 			}
 		}

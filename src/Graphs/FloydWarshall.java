@@ -43,5 +43,7 @@ public class FloydWarshall {
 		graph[2][3] = 1;
 
 		int[][] res = floydWarshall(graph);
+		
+		System.err.println("ok");
 	}
 }
