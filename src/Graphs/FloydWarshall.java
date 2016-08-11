@@ -1,4 +1,4 @@
-	package Graphs;
+package Graphs;
 
 import java.util.Arrays;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 // Negative weights allowed, but no negative cycles!
 public class FloydWarshall {
 
-	static int[][] floydWarshall(int graph[][]) {
+	static int[][] floydWarshall(int[][] graph) {
 		int nV = graph.length;
 		int dist[][] = new int[nV][nV];
 
