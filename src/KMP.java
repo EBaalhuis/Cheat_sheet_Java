@@ -3,15 +3,16 @@ import java.util.*;
 
 public class KMP {
 
-	static int KMP(String needle, String haystack) {
-		int n = needle.length();
-		int h = haystack.length();
+	// Find first occurence of p within s
+	static int KMP(String p, String s) {
+		int n = p.length();
+		int h = s.length();
 
 		int[] prefix = new int[n+1];
 		prefix[0] = -1;
 		int q = -1;
 		for (int i = 0; i < n; i++) {
-			while (q >= 0 && needle.charAt(q) != needle.charAt(i)) {
+			while (q >= 0 && p.charAt(q) != p.charAt(i)) {
 				q = prefix[q];
 			}
 			q++;
@@ -20,7 +21,7 @@ public class KMP {
 		
 		q = 0;
 		for (int i = 0; i < h; i++) {
-			while (q >= 0 && needle.charAt(q) != haystack.charAt(i)) {
+			while (q >= 0 && p.charAt(q) != s.charAt(i)) {
 				q = prefix[q];
 			}
 			q++;

@@ -2,10 +2,10 @@ package Graphs;
 import java.io.*;
 import java.util.*;
 
-//Find strongly connected components of a graph.
-//O(E + V)
 public class Tarjan {
 
+	//Find strongly connected components of a graph.
+	//O(E + V)
 	static List<List<Integer>> scc(List<Integer>[] g) {
 		int n = g.length;
 		boolean [] visited = new boolean[n];

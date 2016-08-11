@@ -8,10 +8,10 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-//Find the convex hull of a set of points in 2d.
-//Given P[] of points, return Stack<P> with all points on convex hull
-//in ccw order (from the bottom of the stack up). O(V log V).
 public class Graham_Scan {
+	//Find the convex hull of a set of points in 2d.
+	//Given P[] of points, return Stack<P> with all points on convex hull
+	//in ccw order (from the bottom of the stack up). O(V log V).
 	static Stack<P> compute(P[] points) {
 		double minX = Double.MAX_VALUE;
 		double minY = Double.MAX_VALUE;
@@ -44,8 +44,8 @@ public class Graham_Scan {
 		for (int i = 2; i < points.length; i++) {
 			P a = s.elementAt(s.size() - 2);
 			P b = s.elementAt(s.size() - 1);
-			if (ccw(a, b, points[i]) < 0) { // use <= here to include co-linear
-											// points
+			// use <= here to include co-linear points
+			if (ccw(a, b, points[i]) < 0) {
 				s.pop();
 				i--;
 				continue;

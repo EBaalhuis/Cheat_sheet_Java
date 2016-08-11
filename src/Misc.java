@@ -18,10 +18,6 @@ public class Misc {
 	int x = 100;
 	String binary = Integer.toBinaryString(x);
 	int y = Integer.parseInt(binary, 2);
-
-	// To get the actual modulo of negative number (being a positive result).
-	int a, b;
-	int modulo = (a % b + b) % b;
 	
 	// Distance between two binary numbers (number of bits which are different)
 	public static int difference(int num1, int num2) {

@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-//Find the area of any polygon in 2d. Points must be in cw or ccw order.
 public class Polygon_Area {
 
+	//Find the area of any polygon in 2d. Points must be in cw or ccw order.
 	static double area(double[] xcoord, double[] ycoord) {
 		double res = 0;
 		for (int i = 0; i < xcoord.length - 1; i++) {

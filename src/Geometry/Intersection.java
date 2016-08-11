@@ -3,9 +3,7 @@ package Geometry;
 
 public class Intersection {
 
-	// Given two lines according to lineParam, returns their point of
-	// intersection.
-	// Untested!
+	// Given two lines according to lineParam, returns their point of intersection.
 	static double[] intersect(double[] lineParam1, double[] lineParam2) {
 		double[] res = new double[2];
 		double a1 = lineParam1[0];

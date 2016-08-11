@@ -6,10 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
-// Dinics max flow
-// O(V^2 * E)
+
 
 public class MaxFlow {
+	// Dinics max flow
+	// O(V^2 * E)
 	static class Edge {
 		int end, rev, cap, flow;
 

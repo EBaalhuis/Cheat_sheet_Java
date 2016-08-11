@@ -44,16 +44,16 @@ public class Two_Color {
 		int nV = in.nextInt();
 		int nE = in.nextInt();
 		
-		List<Integer>[] adj = new List[nV];
+		List<Integer>[] g = new List[nV];
 		for (int i = 0; i < nV; i++) {
-			adj[i] = new ArrayList<Integer>();
+			g[i] = new ArrayList<Integer>();
 		}
 		
 		for (int i = 0; i < nE; i++) {
 			int start = in.nextInt();
 			int end = in.nextInt();
-			adj[start].add(end);
-			adj[end].add(start); // This line for undirected graphs
+			g[start].add(end);
+			g[end].add(start); // This line for undirected graphs
 		}
 	}
 }

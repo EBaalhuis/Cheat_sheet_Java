@@ -1,17 +1,19 @@
-//Sort vertices such that if (u,v) is an edge, u comes before v.
-//Only works on acyclic graph. Gives wrong output otherwise!
-//O(E + V)
+
 package Graphs;
 
 import java.util.*;
 
 public class TopologicalSort {
 
+	//Sort vertices such that if (u,v) is an edge, u comes before v.
+	//Only works on acyclic graph. Gives wrong output otherwise! O(E + V)
 	static void dfs(List<Integer>[] g, boolean[] used, List<Integer> res, int u) {
 		used[u] = true;
-		for (int v : g[u])
-			if (!used[v])
+		for (int v : g[u]) {
+			if (!used[v]) {
 				dfs(g, used, res, v);
+			}
+		}
 		res.add(u);
 	}
 

@@ -6,8 +6,8 @@ public class CustomComparable {
 	static class test implements Comparable<test> {
 		public int x;
 		
-		test(int xArg) {
-			x = xArg;
+		test(int _x) {
+			x = _x;
 		}
 		
 		public int compareTo(test o) {

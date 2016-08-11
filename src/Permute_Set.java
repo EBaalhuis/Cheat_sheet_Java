@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-// Generate all permutations of a set (of integers).
+// Generate all permutations of a set (of integers). Call with (list, 0).
 public class Permute_Set {
 	static HashSet<Integer[]> permute(List<Integer> arr, int k) {
 		HashSet<Integer[]> set = new HashSet<>();
