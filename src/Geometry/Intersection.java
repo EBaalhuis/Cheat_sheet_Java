@@ -25,27 +25,16 @@ public class Intersection {
 		return res;
 	}
 
-	// Class for points, to use with line segments
-	static class Point {
-		int x;
-		int y;
-
-		Point(int xArg, int yArg) {
-			this.x = xArg;
-			this.y = yArg;
-		}
-	}
-
 	// Checks if a point p is on the line segment ab.
-		static boolean onSegment(Point a, Point b, Point p) {
-			return ((p.x <= Math.max(a.x, b.x) && p.x >= Math.min(a.x, b.x) && p.y <= Math.max(a.y, b.y)
-					&& p.y >= Math.min(a.y, b.y)) && orientation(a,b,p) == 0);
+		static boolean onSegment(double[] a, double[] b, double[] p) {
+			return ((p[0] <= Math.max(a[0], b[0]) && p[0] >= Math.min(a[0], b[0]) && p[1] <= Math.max(a[1], b[1])
+					&& p[1] >= Math.min(a[1], b[1])) && orientation(a,b,p) == 0);
 		}
 
 	// Returns the orientation of the triplet (p,q,r). 0 = colinear, 1 =
 	// clockwise, 2 = ccw.
-	static int orientation(Point p, Point q, Point r) {
-		int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+	static int orientation(double[] p, double[] q, double[] r) {
+		double val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1]);
 		if (val == 0) {
 			return 0;
 		} else if (val > 0) {
@@ -56,7 +45,7 @@ public class Intersection {
 	}
 
 	// For two line segments ab and pq, determines wether they intersect.
-	static boolean segmentIntersect(Point a, Point b, Point p, Point q) {
+	static boolean segmentIntersect(double[] a, double[] b, double[] p, double[] q) {
 		int o1 = orientation(a, b, p);
 		int o2 = orientation(a, b, q);
 		int o3 = orientation(p, q, a);
