@@ -1,8 +1,9 @@
 package NumberTheory;
 
-//Efficient primality test.
-public class IsPrime {
 
+public class IsPrime {
+	
+	//Efficient primality test.
 	static boolean isPrime(long n) {
 		if (n < 2)
 			return false;
