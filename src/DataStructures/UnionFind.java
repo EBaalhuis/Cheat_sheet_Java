@@ -2,7 +2,7 @@ package DataStructures;
 
 //Stores disjoint sets, allowing you to combine two of them using union(x,y).
 //Cost is almost constant (amortized).
-public class UnionFind {
+class UnionFind {
 	private int[] parent;
 	private int[] rank;
 	
