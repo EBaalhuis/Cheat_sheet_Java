@@ -1,38 +1,30 @@
 package Geometry;
 
-
-public class Intersection {
+public class Line_Intersection {
 
 	// Given two lines according to lineParam, returns their point of intersection.
-	static double[] intersect(double[] lineParam1, double[] lineParam2) {
+	static double[] intersect(double[] l1, double[] l2) {
 		double[] res = new double[2];
-		double a1 = lineParam1[0];
-		double b1 = lineParam1[1];
-		double c1 = lineParam1[2];
-		double a2 = lineParam2[0];
-		double b2 = lineParam2[1];
-		double c2 = lineParam2[2];
 
-		double det = a1 * b2 - a2 * b1;
+		double det = l1[0] * l2[1] - l2[0] * l1[1];
 		if (det == 0) {
 			res[0] = Integer.MAX_VALUE;
 			res[1] = Integer.MAX_VALUE;
 		} else {
-			res[0] = (b2 * c1 - b1 * c2) / det;
-			res[1] = (a1 * c2 - a2 * c1) / det;
+			res[0] = (l2[1] * l1[2] - l1[1] * l2[2]) / det;
+			res[1] = (l1[0] * l2[2] - l2[0] * l1[2]) / det;
 		}
-
 		return res;
 	}
 
 	// Checks if a point p is on the line segment ab.
-		static boolean onSegment(double[] a, double[] b, double[] p) {
-			return ((p[0] <= Math.max(a[0], b[0]) && p[0] >= Math.min(a[0], b[0]) && p[1] <= Math.max(a[1], b[1])
-					&& p[1] >= Math.min(a[1], b[1])) && orientation(a,b,p) == 0);
-		}
+	static boolean onSegment(double[] a, double[] b, double[] p) {
+		return ((p[0] <= Math.max(a[0], b[0]) && p[0] >= Math.min(a[0], b[0]) && p[1] <= Math.max(a[1], b[1])
+				&& p[1] >= Math.min(a[1], b[1])) && orientation(a, b, p) == 0);
+	}
 
-	// Returns the orientation of the triplet (p,q,r). 0 = colinear, 1 =
-	// clockwise, 2 = ccw.
+	// Returns the orientation of the triplet (p,q,r). 0 = colinear,
+	// 1 = clockwise, 2 = ccw.
 	static int orientation(double[] p, double[] q, double[] r) {
 		double val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1]);
 		if (val == 0) {
