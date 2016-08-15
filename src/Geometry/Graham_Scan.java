@@ -1,126 +1,113 @@
 package Geometry;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.awt.*;
+import java.io.*;
+import java.util.*;
 
 public class Graham_Scan {
 	//Find the convex hull of a set of points in 2d.
-	//Given P[] of points, return Stack<P> with all points on convex hull
-	//in ccw order (from the bottom of the stack up). O(V log V).
-	static Stack<P> compute(P[] points) {
-		double minX = Double.MAX_VALUE;
-		double minY = Double.MAX_VALUE;
-
-		// Set base point with smallest x. Tie-breaker smaller y.
-		for (int i = 0; i < points.length; i++) {
-			if (points[i].x < minX) {
-				minX = points[i].x;
-				minY = points[i].y;
-			} else if (points[i].x == minX) {
-				if (points[i].y < minY) {
-					minX = points[i].x;
-					minY = points[i].y;
-				}
-			}
-		}
-
-		// Modify all points so that base point is origin.
-		for (int i = 0; i < points.length; i++) {
-			points[i].x -= minX;
-			points[i].y -= minY;
-			points[i].setSlope();
-		}
-
-		Arrays.sort(points);
-
-		Stack<P> s = new Stack<P>();
-		s.push(points[0]);
-		s.push(points[1]);
-		for (int i = 2; i < points.length; i++) {
-			P a = s.elementAt(s.size() - 2);
-			P b = s.elementAt(s.size() - 1);
-			// use <= here to include co-linear points
-			if (ccw(a, b, points[i]) < 0) {
-				s.pop();
-				i--;
-				continue;
-			}
-			s.push(points[i]);
-		}
-
-		return s;
+	//Given List<P> of points, return List<P> with all points on convex hull
+	//in ccw order. O(V log V).
+	private static boolean leftTurn(Point p1, Point p2, Point p3) {
+		return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) <= 0;
 	}
 
-	static double ccw(P a, P b, P c) {
-		return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
-	}
+	static ArrayList<Point> hull(ArrayList<Point> points) {
+		int n = points.size();
+		
+		ArrayList<Point> pointsByX = (ArrayList<Point>) points.clone();
+		Collections.sort(pointsByX, new Comparator<Point>() {
+			public int compare(Point o1, Point o2) {
+				return new Integer(o1.x).compareTo(new Integer(o2.x));
+			}
+		});
 
-	static class P implements Comparable<P> {
-		public int x;
-		public int y;
-		public double slope;
+		Point[] up = new Point[pointsByX.size()];
+		up[0] = pointsByX.get(0);
+		up[1] = pointsByX.get(1);
 
-		public P(int a, int b) {
-			x = a;
-			y = b;
-			setSlope();
-		}
+		int upInd = 2;
 
-		public void setSlope() {
-			if (x != 0) {
-				slope = (double) y / (double) x;
-			} else if (y > 0) {
-				slope = Double.MAX_VALUE;
-			} else {
-				slope = -Double.MAX_VALUE;
+		for (int i = 2; i < n; i++) {
+			up[upInd] = pointsByX.get(i);
+			upInd++;
+
+			while (upInd > 2 && leftTurn(up[upInd - 3], up[upInd - 2], up[upInd - 1])) {
+				up[upInd - 2] = up[upInd - 1];
+				up[upInd - 1] = null;
+				upInd--;
 			}
 		}
 
-		public int compareTo(P o) {
-			return Double.compare(this.slope, o.slope);
+		Point[] low = new Point[n];
+		low[0] = pointsByX.get(n - 1);
+		low[1] = pointsByX.get(n - 2);
+
+		int lowInd = 2;
+
+		for (int i = 2; i < n; i++) {
+			low[lowInd] = pointsByX.get(n - i);
+			lowInd++;
+
+			while (lowInd > 2 && leftTurn(low[lowInd - 3], low[lowInd - 2], low[lowInd - 1])) {
+				low[lowInd - 2] = low[lowInd - 1];
+				low[lowInd - 1] = null;
+				lowInd--;
+			}
 		}
+
+		ArrayList<Point> hull = new ArrayList<Point>(upInd + lowInd);
+		for (int i = 0; i < upInd; i++) {
+			hull.add(up[i]);
+		}
+
+		for (int i = 1; i < lowInd - 1; i++) {
+			hull.add(low[i]);
+		}
+
+		return hull;
 	}
 
 	public static void main(String[] args) throws IOException {
-		in.init(System.in);
+		IO io = new IO(System.in);
 
-		int nPoints = in.nextInt();
-		P[] points = new P[nPoints];
+		int nPoints = io.nextInt();
+		ArrayList<Point> points = new ArrayList<>();
 		for (int i = 0; i < nPoints; i++) {
-			points[i] = new P(in.nextInt(), in.nextInt());
+			points.add(new Point(io.nextInt(), io.nextInt()));
 		}
 
-		Stack<P> st = compute(points);
+		ArrayList<Point> st = hull(points);
 		
 		System.out.println(st.size());
 	}
 
-	static class in {
-		static BufferedReader reader;
-		static StringTokenizer tokenizer;
+	static class IO extends PrintWriter {
+		static BufferedReader r;
+		static StringTokenizer t;
 
-		static void init(InputStream input) {
-			reader = new BufferedReader(new InputStreamReader(input));
-			tokenizer = new StringTokenizer("");
+		public IO(InputStream i) {
+			super(new BufferedOutputStream(System.out));
+			r = new BufferedReader(new InputStreamReader(i));
+			t = new StringTokenizer("");
 		}
 
-		static String next() throws IOException {
-			while (!tokenizer.hasMoreTokens()) {
-				tokenizer = new StringTokenizer(reader.readLine());
+		public String next() throws IOException {
+			while (!t.hasMoreTokens()) {
+				t = new StringTokenizer(r.readLine());
 			}
-			return tokenizer.nextToken();
+			return t.nextToken();
 		}
 
-		static int nextInt() throws IOException {
+		public int nextInt() throws IOException{
 			return Integer.parseInt(next());
 		}
 
-		static double nextDouble() throws IOException {
+		public long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+
+		public double nextDouble() throws IOException {
 			return Double.parseDouble(next());
 		}
 	}
