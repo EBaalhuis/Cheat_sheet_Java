@@ -1,11 +1,11 @@
-package DataStructures;
+package Data_Structures;
 
 // Allows O(log n) updating and querying of cumulative frequency.
-class FenwickTree {
+class Fenwick_Tree {
 	private int n;
 	private long[] s;
 
-	public FenwickTree(int _n) {
+	public Fenwick_Tree(int _n) {
 		n = _n;
 		s = new long[n];
 	}
