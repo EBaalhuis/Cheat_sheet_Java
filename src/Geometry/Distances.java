@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 public class Distances {
 
 	// Line given by p1 (x,y) and p2 (x,y).
-	// Point given by p (x,y). Return distance between line and point.
+	// Point given by p (x,y). Return distance between line segment and point.
 	// Requires: Geometry/Basics/dotProduct
 	static double distLinePoint(double[] p1, double[] p2, double[] p) {
 		double[] q = new double[2];
