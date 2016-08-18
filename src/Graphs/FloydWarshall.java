@@ -8,13 +8,7 @@ public class FloydWarshall {
 
 	static int[][] floydWarshall(int[][] graph) {
 		int nV = graph.length;
-		int dist[][] = new int[nV][nV];
-
-		for (int i = 0; i < nV; i++) {
-			for (int j = 0; j < nV; j++) {
-				dist[i][j] = graph[i][j];
-			}
-		}
+		int dist[][] = graph.clone();
 
 		for (int k = 0; k < nV; k++) {
 			for (int i = 0; i < nV; i++) {
