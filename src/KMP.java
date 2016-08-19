@@ -3,12 +3,13 @@ import java.util.*;
 
 public class KMP {
 
-	// Find first occurence of p within s
-	static int KMP(String p, String s) {
+	// Find all occurences of p within s
+	static ArrayList<Integer> KMP(String p, String s) {
 		int n = p.length();
 		int h = s.length();
+		ArrayList<Integer> res = new ArrayList<>();
 
-		int[] prefix = new int[n+1];
+		int[] prefix = new int[n + 1];
 		prefix[0] = -1;
 		int q = -1;
 		for (int i = 0; i < n; i++) {
@@ -16,9 +17,9 @@ public class KMP {
 				q = prefix[q];
 			}
 			q++;
-			prefix[i+1] = q;
+			prefix[i + 1] = q;
 		}
-		
+
 		q = 0;
 		for (int i = 0; i < h; i++) {
 			while (q >= 0 && p.charAt(q) != s.charAt(i)) {
@@ -26,10 +27,11 @@ public class KMP {
 			}
 			q++;
 			if (q == n) {
-				return i - n + 1;
+				res.add(i - n + 1);
+				q = prefix[q];
 			}
 		}
-		return -1;
+		return res;
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -37,7 +39,7 @@ public class KMP {
 		String pat = io.next();
 		String txt = io.next();
 
-		int offset = KMP(pat, txt);
+		ArrayList<Integer> offset = KMP(pat, txt);
 
 		io.println(offset);
 		io.close();
