@@ -9,7 +9,7 @@ public class Graham_Scan {
 	//Given List<P> of points, return List<P> with all points on convex hull
 	//in ccw order. O(V log V).
 	private static boolean leftTurn(Point p1, Point p2, Point p3) {
-		return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) <= 0;
+		return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) >= 0;
 	}
 
 	static ArrayList<Point> hull(ArrayList<Point> points) {
@@ -18,7 +18,8 @@ public class Graham_Scan {
 		ArrayList<Point> pointsByX = (ArrayList<Point>) points.clone();
 		Collections.sort(pointsByX, new Comparator<Point>() {
 			public int compare(Point o1, Point o2) {
-				return new Integer(o1.x).compareTo(new Integer(o2.x));
+				int r = new Integer(o1.x).compareTo(new Integer(o2.x));
+				return r == 0 ? new Integer(o1.y).compareTo(new Integer(o2.y)) : r;
 			}
 		});
 
