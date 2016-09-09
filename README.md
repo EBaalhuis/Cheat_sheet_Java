@@ -1,3 +1,2 @@
 # CheatSheet
-This repository contains code for use in a cheat sheet for ACM-ICPC programming contests. All of the methods aim to be short,
-but still readable. 
+This is a cheat sheet for programming competitions. There are no guarantees to the quality or corectness of any of the code. Use at your own risk.
