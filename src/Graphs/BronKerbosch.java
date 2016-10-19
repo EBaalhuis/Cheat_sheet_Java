@@ -17,8 +17,8 @@ public class BronKerbosch {
 			return;
 		}
 		int u = p.isEmpty() ? x.first() : p.first();
-		TreeSet<Integer> removing = new TreeSet<>();
-		for (int v : p) {
+		for (Iterator<Integer> i = p.iterator(); i.hasNext();) {
+			int v = i.next();
 			if (g[u].contains(v)) {
 				continue;
 			}
@@ -36,10 +36,9 @@ public class BronKerbosch {
 			}
 			
 			bk(r2, p2, x2, g, max);
-			removing.add(v);
+			x.add(v);
+			i.remove();
 		}
-		p.removeAll(removing);
-		x.addAll(removing);
 	}
 
 	// Driver for testing (shibuyacrossing)
