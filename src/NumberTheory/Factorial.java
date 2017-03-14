@@ -3,7 +3,7 @@ package NumberTheory;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class Faculty {
+public class Factorial {
 
 	// Calculate n! Works for n <= 5 000.
 	static BigInteger fac(int n) {
