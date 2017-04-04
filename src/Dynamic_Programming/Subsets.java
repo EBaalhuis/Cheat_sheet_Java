@@ -6,21 +6,25 @@ public class Subsets {
 
 	public static void main(String[] args) throws IOException {
 		IO io = new IO(System.in);
-			int n = io.nextInt();
-			boolean[] allowed = new boolean[1 << n];
-			// Full set is allowed
-			allowed[(1 << n) - 1] = true;
-			for (int mask = (1 << n) - 1; mask > 0; --mask) {
-				if (allowed[mask]) {
-					for (int i = 0; i < n; ++i) {
-						// Check if mask >> i is a subset
-						if (((mask >> i) & 1) != 1) {
-							continue;
-						}
-						// Some kind of computation for this subset
-						if (true) {
-							allowed[mask ^ (1 << i)] = true;
-						}
+
+			int bits = 3;
+			
+			// Top down
+		    for (int mask = 1 << (bits+1) - 1; mask >= 0; mask--) {
+		    	for (int item = 0; item < bits; item++) {
+					int newMask = mask ^ (1 << item);
+					if (newMask > mask) {
+						// Added 1 item, do things
+					}
+				}
+			}
+		
+			// Bottom up
+			for (int mask = 0; mask < 1 << bits; mask++) {
+				for (int item = 0; item < bits; item++) {
+					int ij = mask ^ (1 << item);
+					if (ij < mask) {
+						// Removed 1 item, do things
 					}
 				}
 			}
