@@ -29,8 +29,9 @@ public class Two_Color {
 						}
 						if (colors[v] == 0) {
 							colors[v] = 3 - colors[u];
-						} else if (colors[v] == colors[u])
+						} else if (colors[v] == colors[u]) {
 							return false;
+						}
 					}
 				}
 			}
