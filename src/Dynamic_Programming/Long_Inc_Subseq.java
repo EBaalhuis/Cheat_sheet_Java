@@ -1,8 +1,5 @@
 package Dynamic_Programming;
 
-import java.io.*;
-import java.util.*;
-
 public class Long_Inc_Subseq {
 
 	static int[] LIS(int[] x) {
