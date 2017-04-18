@@ -10,9 +10,17 @@ import java.util.StringTokenizer;
 public class Distances {
 
 	// Line given by p1 (x,y) and p2 (x,y).
+	// Point given by p (x,y). Return distance between line and point.
+	static double distLinePoint(double[] p1, double[] p2, double[] p) {
+		double top = Math.abs((p2[1]-p1[1])*p[0] - (p2[0]-p1[0])*p[1] + p2[0]*p1[1] - p2[1]*p1[0]);
+		double bot = Math.sqrt((p2[0]-p1[0])*(p2[0]-p1[0]) + (p2[1]-p1[1])*(p2[1]-p1[1]));
+		return top/bot;
+	}
+	
+	// Line given by p1 (x,y) and p2 (x,y).
 	// Point given by p (x,y). Return distance between line segment and point.
 	// Requires: Geometry/Basics/dotProduct
-	static double distLinePoint(double[] p1, double[] p2, double[] p) {
+	static double distLinesegPoint(double[] p1, double[] p2, double[] p) {
 		double[] q = new double[2];
 		double[] q2 = new double[2];
 		q[0] = p[0] - p1[0];
@@ -39,10 +47,10 @@ public class Distances {
 	// Return distance between the two lines. ONLY FOR NON-INTERSECTING LINES!
 	static double distLineLine(double[] p1, double[] p2, double[] p3, double[] p4) {
 		double[] res = new double[4];
-		res[0] = distLinePoint(p1, p2, p3);
-		res[1] = distLinePoint(p1, p2, p4);
-		res[2] = distLinePoint(p3, p4, p1);
-		res[3] = distLinePoint(p3, p4, p2);
+		res[0] = distLinesegPoint(p1, p2, p3);
+		res[1] = distLinesegPoint(p1, p2, p4);
+		res[2] = distLinesegPoint(p3, p4, p1);
+		res[3] = distLinesegPoint(p3, p4, p2);
 		Arrays.sort(res);
 		return res[0];
 	}
