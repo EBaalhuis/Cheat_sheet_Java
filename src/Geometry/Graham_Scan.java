@@ -8,66 +8,66 @@ public class Graham_Scan {
 	//Find the convex hull of a set of points in 2d.
 	//Given List<P> of points, return List<P> with all points on convex hull
 	//in ccw order. O(V log V).
-	private static boolean leftTurn(Point p1, Point p2, Point p3) {
-		return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) >= 0;
-	}
+    private static boolean leftTurn(Point p1, Point p2, Point p3) {
+        return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x) >= 0;
+    }
 
-	static ArrayList<Point> hull(ArrayList<Point> points) {
-		int n = points.size();
-		
-		ArrayList<Point> pointsByX = (ArrayList<Point>) points.clone();
-		Collections.sort(pointsByX, new Comparator<Point>() {
-			public int compare(Point o1, Point o2) {
-				int r = new Integer(o1.x).compareTo(new Integer(o2.x));
-				return r == 0 ? new Integer(o1.y).compareTo(new Integer(o2.y)) : r;
-			}
-		});
+    static ArrayList<Point> hull(ArrayList<Point> points) {
+        int n = points.size();
 
-		Point[] up = new Point[pointsByX.size()];
-		up[0] = pointsByX.get(0);
-		up[1] = pointsByX.get(1);
+        ArrayList<Point> pointsByX = (ArrayList<Point>) points.clone();
+        Collections.sort(pointsByX, new Comparator<Point>() {
+            public int compare(Point o1, Point o2) {
+                int r = new Integer(o1.x).compareTo(new Integer(o2.x));
+                return r == 0 ? new Integer(o1.y).compareTo(new Integer(o2.y)) : r;
+            }
+        });
 
-		int upInd = 2;
+        Point[] up = new Point[pointsByX.size()];
+        up[0] = pointsByX.get(0);
+        up[1] = pointsByX.get(1);
 
-		for (int i = 2; i < n; i++) {
-			up[upInd] = pointsByX.get(i);
-			upInd++;
+        int upInd = 2;
 
-			while (upInd > 2 && leftTurn(up[upInd - 3], up[upInd - 2], up[upInd - 1])) {
-				up[upInd - 2] = up[upInd - 1];
-				up[upInd - 1] = null;
-				upInd--;
-			}
-		}
+        for (int i = 2; i < n; i++) {
+            up[upInd] = pointsByX.get(i);
+            upInd++;
 
-		Point[] low = new Point[n];
-		low[0] = pointsByX.get(n - 1);
-		low[1] = pointsByX.get(n - 2);
+            while (upInd > 2 && leftTurn(up[upInd - 3], up[upInd - 2], up[upInd - 1])) {
+                up[upInd - 2] = up[upInd - 1];
+                up[upInd - 1] = null;
+                upInd--;
+            }
+        }
 
-		int lowInd = 2;
+        Point[] low = new Point[n];
+        low[0] = pointsByX.get(n - 1);
+        low[1] = pointsByX.get(n - 2);
 
-		for (int i = 2; i < n; i++) {
-			low[lowInd] = pointsByX.get(n - i);
-			lowInd++;
+        int lowInd = 2;
 
-			while (lowInd > 2 && leftTurn(low[lowInd - 3], low[lowInd - 2], low[lowInd - 1])) {
-				low[lowInd - 2] = low[lowInd - 1];
-				low[lowInd - 1] = null;
-				lowInd--;
-			}
-		}
+        for (int i = 3; i <= n; i++) {
+            low[lowInd] = pointsByX.get(n - i);
+            lowInd++;
 
-		ArrayList<Point> hull = new ArrayList<Point>(upInd + lowInd);
-		for (int i = 0; i < upInd; i++) {
-			hull.add(up[i]);
-		}
+            while (lowInd > 2 && leftTurn(low[lowInd - 3], low[lowInd - 2], low[lowInd - 1])) {
+                low[lowInd - 2] = low[lowInd - 1];
+                low[lowInd - 1] = null;
+                lowInd--;
+            }
+        }
 
-		for (int i = 1; i < lowInd - 1; i++) {
-			hull.add(low[i]);
-		}
+        ArrayList<Point> hull = new ArrayList<Point>(upInd + lowInd);
+        for (int i = 0; i < upInd; i++) {
+            hull.add(up[i]);
+        }
 
-		return hull;
-	}
+        for (int i = 1; i < lowInd - 1; i++) {
+            hull.add(low[i]);
+        }
+
+        return hull;
+    }
 
 	public static void main(String[] args) throws IOException {
 		IO io = new IO(System.in);
