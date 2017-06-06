@@ -37,7 +37,6 @@ class Segtree {
 		tree[node] = Math.max(tree[node * 2], tree[node * 2 + 1]); // operation
 	}
 
-	// Update range [i,j] with val
 	private void update(int node, int a, int b, int i, int j, long val) {
 		u(node,a,b);
 
