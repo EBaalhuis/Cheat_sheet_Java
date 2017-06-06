@@ -12,7 +12,7 @@ public class PrimeDecomposition {
 			a = a / 2;
 		}
 		// Careful! Loop variable is a long
-		for (long i = 3; i <= Math.sqrt(a); i = i + 2) {
+		for (long i = 3; i*i <= a; i = i + 2) {
 			while (a % i == 0) {
 				res.add(i);
 				a = a / i;
