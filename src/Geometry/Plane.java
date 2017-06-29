@@ -21,7 +21,6 @@ public class Plane {
 		return new double[]{l[0] + t * l[3], l[1] + t * l[4], l[2] + t * l[5]};
 	}
 
-	// From basics!
 	static double[] crossProduct(double[] u, double[] v) {
 		double[] res = new double[3];
 		res[0] = u[1] * v[2] - u[2] * v[1];
