@@ -80,6 +80,7 @@ public class Basics {
 		return Math.abs(ccw(a, b, c)) < EPS;
 	}
 
+	// Parallel lines give null results!
 	static P intersect(L l, L m) {
 		double A0 = l.b.y - l.a.y;
 		double B0 = l.a.x - l.b.x;
@@ -88,6 +89,7 @@ public class Basics {
 		double B1 = m.a.x - m.b.x;
 		double C1 = A1 * m.a.x + B1 * m.b.y;
 		double D = A0 * B1 - A1 * B0;
+		if (D==0) return null;
 
 		double x = (B1 * C0 - B0 * C1) / D;
 		double y = (A0 * C1 - A1 * C0) / D;
@@ -97,15 +99,34 @@ public class Basics {
 		} else {
 			P p = new P(x,y);
 			if (l.seg && distLinePoint(p, l) > EPS) {
-				return new P(Double.POSITIVE_INFINITY,0);
+				return null;
 			}
 			if (m.seg && distLinePoint(p, m) > EPS) {
-				return new P(Double.POSITIVE_INFINITY,0);
+				return null;
 			}
 			return p;
 		}
 	}
 
+	// Should test with line segment intersect / manhattan positioning system
+	static L segment_intersect(L l, L m) {
+		if (!collinear(l.a,l.b,m.a) || !collinear(l.a,l.b,m.b)) {
+			P p = intersect(l,m);
+			return p == null ? null : new L(p,p,true);
+		} else {
+			P[] pt = new P[] {l.a,l.b,m.a,m.b};
+			double[] d = new double[] {distLinePoint(l.a, m),
+			distLinePoint(l.b, m),
+			distLinePoint(m.a, l),
+			distLinePoint(m.b, l)};
+			int p1 = 0;
+			while (d[p1] > EPS) p1++;
+			int p2 = p1+1;
+			while (d[p2] > EPS) p2++;
+			return p2 < 4 ? new L(pt[p1],pt[p2],true) : null;
+		}
+	}
+	
 	static boolean sameSide(L l, P p, P q) {
 		P u = l.b.sub(l.a);
 		P v = p.sub(l.a);
