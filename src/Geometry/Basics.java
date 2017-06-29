@@ -2,58 +2,114 @@ package Geometry;
 
 public class Basics {
 
-	// Sine rule: a / sin(alpha) = b / sin(beta) = c / sin(gamma)
-	// Cos rule: c^2 = a^2 + b^2 - 2bc cos(gamma)
-	
-	static double[] crossProduct(double[] u, double[] v) {
-		double[] res = new double[3];
-		res[0] = u[1] * v[2] - u[2] * v[1];
-		res[1] = u[2] * v[0] - u[0] * v[2];
-		res[2] = u[0] * v[1] - u[1] * v[0];
-		return res;
-	}
+	static final double EPS = 0.0000000001;
 
-	static double dotProduct(double[] u, double[] v) {
-		double res = 0;
-		for (int i = 0; i < v.length; i++) {
-			res += u[i] * v[i];
+	static class P {
+		double x, y;
+
+		P(double _x, double _y) {
+			x = _x;
+			y = _y;
 		}
-		return res;
+
+		public P add(P o) {
+			return new P(x + o.x, y + o.y);
+		}
+
+		public P sub(P o) {
+			return new P(x - o.x, y - o.y);
+		}
+
+		public double dist(P o) {
+			return Math.sqrt((x - o.x) * (x - o.x) + (y - o.y) * (y - o.y));
+		}
+
+		public double abs() {
+			return Math.sqrt(x * x + y * y);
+		}
+
+		public P sc(double t) {
+			return new P(t * x, t * y);
+		}
 	}
 
-	// Line given by point 1 (p1x,p1y) and point2 (p2x,p2y).
-	// Return double[3] with a, b, c such that l : ax + by = c.
-	static double[] lineParam(double p1x, double p1y, double p2x, double p2y) {
-		double[] res = new double[3];
-		res[0] = p2y - p1y;
-		res[1] = p1x - p2x;
-		res[2] = res[0] * p1x + res[1] * p1y;
-		return res;
+	static class L {
+		P a, b;
+		boolean seg;
+
+		L(P _a, P _b, boolean s) {
+			a = _a;
+			b = _b;
+			seg = s;
+		}
 	}
 
-	// Line given by two points (l1x, l1y) and (l2x,l2y).
-	// Check if point1 (p1x,p1y) and point2 (p2x,p2y) are on the same side.
-	static boolean sameSide(double p1x, double p1y, double p2x, double p2y, double l1x, double l1y, double l2x,
-			double l2y) {
-		double[] u = new double[] { l2x - l1x, l2y - l1y, 0 };
-		double[] v = new double[] { p1x - l1x, p1y - l1y, 0 };
-		double[] w = new double[] { p2x - l1x, p2y - l1y, 0 };
-		double[] cp1 = crossProduct(u, v);
-		double[] cp2 = crossProduct(u, w);
-		return dotProduct(cp1, cp2) >= 0;
+	static double dot(P a, P b) {
+		return a.x * b.x + a.y * b.y;
 	}
 
-	// Triangle given by 3 points (ax, ay), (bx, by), (cx, cy). Return area.
-	static double areaTriangle(double ax, double ay, double bx, double by, double cx, double cy) {
-		return Math.abs(ax * (by - cy) + bx * (cy - ay) + cx * (ay - by)) / 2.;
+	static double cross(P a, P b) {
+		return a.x * b.y - a.y * b.x;
 	}
 
-	// Triangle given by 3 points (ax, ay), (bx, by), (cx, cy).
-	// Check if point (px, py) is inside the triangle. Points on edge are
-	// counted in.
-	static boolean pointInTriangle(double px, double py, double ax, double ay, double bx, double by, double cx,
-			double cy) {
-		return (sameSide(px, py, ax, ay, bx, by, cx, cy) && sameSide(px, py, bx, by, ax, ay, cx, cy)
-				&& sameSide(px, py, cx, cy, ax, ay, bx, by));
+	static double angle(P a, P b, P c) {
+		return Math.acos(dot(b.sub(a), c.sub(b)) / b.sub(a).abs() / c.sub(b).abs());
+	}
+
+	static P proj(P p, L l) {
+		if (l.seg) {
+			if (dot(l.b.sub(l.a), p.sub(l.b)) > 0)
+				return l.b;
+			if (dot(l.a.sub(l.b), p.sub(l.a)) > 0)
+				return l.a;
+		}
+		double t = dot(p.sub(l.a), l.b.sub(l.a)) / l.b.sub(l.a).abs();
+		return l.a.add((l.b.sub(l.a)).sc(t));
+	}
+
+	static double distLinePoint(P p, L l) {
+		P q = proj(p, l);
+		return q.dist(p);
+	}
+
+	static double ccw(P a, P b, P c) {
+		return cross(b.sub(a), b.sub(c));
+	}
+
+	static boolean collinear(P a, P b, P c) {
+		return Math.abs(ccw(a, b, c)) < EPS;
+	}
+
+	static P intersect(L l, L m) {
+		double A0 = l.b.y - l.a.y;
+		double B0 = l.a.x - l.b.x;
+		double C0 = A0 * l.a.x + B0 * l.b.y;
+		double A1 = m.b.y - m.a.y;
+		double B1 = m.a.x - m.b.x;
+		double C1 = A1 * m.a.x + B1 * m.b.y;
+		double D = A0 * B1 - A1 * B0;
+
+		double x = (B1 * C0 - B0 * C1) / D;
+		double y = (A0 * C1 - A1 * C0) / D;
+
+		if (!l.seg && !m.seg) {
+			return new P(x, y);
+		} else {
+			P p = new P(x,y);
+			if (l.seg && distLinePoint(p, l) > EPS) {
+				return new P(Double.POSITIVE_INFINITY,0);
+			}
+			if (m.seg && distLinePoint(p, m) > EPS) {
+				return new P(Double.POSITIVE_INFINITY,0);
+			}
+			return p;
+		}
+	}
+
+	static boolean sameSide(L l, P p, P q) {
+		P u = l.b.sub(l.a);
+		P v = p.sub(l.a);
+		P w = q.sub(l.a);
+		return cross(u,v) * cross(u,w) > -EPS;
 	}
 }
