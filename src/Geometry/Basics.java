@@ -42,6 +42,10 @@ public class Basics {
 			b = _b;
 			seg = s;
 		}
+		
+		public boolean degen() {
+			return Math.abs(a.x-b.x) < EPS && Math.abs(a.y-b.y) < EPS; 
+		}
 	}
 
 	static double dot(P a, P b) {
@@ -57,6 +61,9 @@ public class Basics {
 	}
 
 	static P proj(P p, L l) {
+		if (l.degen()) {
+			return l.a;
+		}
 		if (l.seg) {
 			if (dot(l.b.sub(l.a), p.sub(l.b)) > 0)
 				return l.b;
@@ -64,7 +71,8 @@ public class Basics {
 				return l.a;
 		}
 		double t = dot(p.sub(l.a), l.b.sub(l.a)) / l.b.sub(l.a).abs();
-		return l.a.add((l.b.sub(l.a)).sc(t));
+		P dir = l.b.sub(l.a).sc(1/l.b.sub(l.a).abs());
+		return l.a.add(dir.sc(t));
 	}
 
 	static double distLinePoint(P p, L l) {
@@ -89,7 +97,8 @@ public class Basics {
 		double B1 = m.a.x - m.b.x;
 		double C1 = A1 * m.a.x + B1 * m.a.y;
 		double D = A0 * B1 - A1 * B0;
-		if (D==0) return null;
+		if (D == 0)
+			return null;
 
 		double x = (B1 * C0 - B0 * C1) / D;
 		double y = (A0 * C1 - A1 * C0) / D;
@@ -97,7 +106,7 @@ public class Basics {
 		if (!l.seg && !m.seg) {
 			return new P(x, y);
 		} else {
-			P p = new P(x,y);
+			P p = new P(x, y);
 			if (l.seg && distLinePoint(p, l) > EPS) {
 				return null;
 			}
@@ -110,20 +119,20 @@ public class Basics {
 
 	// Should test with line segment intersect / manhattan positioning system
 	static L segment_intersect(L l, L m) {
-		if (!collinear(l.a,l.b,m.a) || !collinear(l.a,l.b,m.b)) {
-			P p = intersect(l,m);
-			return p == null ? null : new L(p,p,true);
+		if (!collinear(l.a, l.b, m.a) || !collinear(l.a, l.b, m.b)) {
+			P p = intersect(l, m);
+			return p == null ? null : new L(p, p, true);
 		} else {
-			P[] pt = new P[] {l.a,l.b,m.a,m.b};
-			double[] d = new double[] {distLinePoint(l.a, m),
-			distLinePoint(l.b, m),
-			distLinePoint(m.a, l),
-			distLinePoint(m.b, l)};
+			P[] pt = new P[] { l.a, l.b, m.a, m.b };
+			double[] d = new double[] { distLinePoint(l.a, m), distLinePoint(l.b, m), distLinePoint(m.a, l),
+					distLinePoint(m.b, l), 0, 0 };
 			int p1 = 0;
-			while (d[p1] > EPS) p1++;
-			int p2 = p1+1;
-			while (d[p2] > EPS) p2++;
-			return p2 < 4 ? new L(pt[p1],pt[p2],true) : null;
+			while (d[p1] > EPS)
+				p1++;
+			int p2 = p1 + 1;
+			while (d[p2] > EPS)
+				p2++;
+			return p2 < 4 ? new L(pt[p1], pt[p2], true) : null;
 		}
 	}
 	
