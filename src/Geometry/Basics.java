@@ -84,10 +84,10 @@ public class Basics {
 	static P intersect(L l, L m) {
 		double A0 = l.b.y - l.a.y;
 		double B0 = l.a.x - l.b.x;
-		double C0 = A0 * l.a.x + B0 * l.b.y;
+		double C0 = A0 * l.a.x + B0 * l.a.y;
 		double A1 = m.b.y - m.a.y;
 		double B1 = m.a.x - m.b.x;
-		double C1 = A1 * m.a.x + B1 * m.b.y;
+		double C1 = A1 * m.a.x + B1 * m.a.y;
 		double D = A0 * B1 - A1 * B0;
 		if (D==0) return null;
 
