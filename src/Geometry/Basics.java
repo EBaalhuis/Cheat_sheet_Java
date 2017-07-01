@@ -2,6 +2,9 @@ package Geometry;
 
 public class Basics {
 
+	// Sine rule: a / sin(alpha) = b / sin(beta) = c / sin(gamma)
+	// Cos rule: c^2 = a^2 + b^2 - 2bc cos(gamma)
+	
 	static final double EPS = 0.000000001;
 
 	static class P {
@@ -57,7 +60,7 @@ public class Basics {
 	}
 
 	static double angle(P a, P b, P c) {
-		return Math.acos(dot(b.sub(a), c.sub(b)) / b.sub(a).abs() / c.sub(b).abs());
+		return Math.acos(dot(a.sub(b), c.sub(b)) / a.sub(b).abs() / c.sub(b).abs());
 	}
 
 	static P proj(P p, L l) {
