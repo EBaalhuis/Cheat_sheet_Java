@@ -2,7 +2,7 @@ package Geometry;
 
 public class Basics {
 
-	static final double EPS = 0.0000000001;
+	static final double EPS = 0.000000001;
 
 	static class P {
 		double x, y;
@@ -42,9 +42,9 @@ public class Basics {
 			b = _b;
 			seg = s;
 		}
-		
+
 		public boolean degen() {
-			return Math.abs(a.x-b.x) < EPS && Math.abs(a.y-b.y) < EPS; 
+			return Math.abs(a.x - b.x) < EPS && Math.abs(a.y - b.y) < EPS;
 		}
 	}
 
@@ -71,7 +71,7 @@ public class Basics {
 				return l.a;
 		}
 		double t = dot(p.sub(l.a), l.b.sub(l.a)) / l.b.sub(l.a).abs();
-		P dir = l.b.sub(l.a).sc(1/l.b.sub(l.a).abs());
+		P dir = l.b.sub(l.a).sc(1 / l.b.sub(l.a).abs());
 		return l.a.add(dir.sc(t));
 	}
 
@@ -126,20 +126,37 @@ public class Basics {
 			P[] pt = new P[] { l.a, l.b, m.a, m.b };
 			double[] d = new double[] { distLinePoint(l.a, m), distLinePoint(l.b, m), distLinePoint(m.a, l),
 					distLinePoint(m.b, l), 0, 0 };
-			int p1 = 0;
-			while (d[p1] > EPS)
-				p1++;
-			int p2 = p1 + 1;
-			while (d[p2] > EPS)
-				p2++;
-			return p2 < 4 ? new L(pt[p1], pt[p2], true) : null;
+			if (d[0] < EPS && d[1] < EPS) {
+				return new L(pt[0],pt[1],true);
+			}
+			if (d[2] < EPS && d[3] < EPS) {
+				return new L(pt[2],pt[3],true);
+			}
+			if (d[0] > EPS && d[1] > EPS && d[2] > EPS && d[3] > EPS) {
+				return null;
+			}
+			if (d[0] < EPS) {
+				if (d[2] < EPS) {
+					return new L(pt[0],pt[2],true);
+				} else {
+					return new L(pt[0],pt[3],true);
+				}
+			} else {
+				if (d[2] < EPS) {
+					return new L(pt[1],pt[2],true);
+				} else {
+					return new L(pt[1],pt[3],true);
+				}
+			}
 		}
 	}
-	
+
 	static boolean sameSide(L l, P p, P q) {
 		P u = l.b.sub(l.a);
 		P v = p.sub(l.a);
 		P w = q.sub(l.a);
-		return cross(u,v) * cross(u,w) > -EPS;
+		return cross(u, v) * cross(u, w) > -EPS;
 	}
+
+	
 }
