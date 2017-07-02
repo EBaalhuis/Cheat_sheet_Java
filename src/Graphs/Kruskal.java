@@ -41,8 +41,7 @@ public class Kruskal {
 	
 	static class E implements Comparable<E>{
 		public final int w;
-		public final V end;
-		public final V start;
+		public final V end, start;
 		
 		public E(V argStart, V argEnd, int argW) {
 			start = argStart;

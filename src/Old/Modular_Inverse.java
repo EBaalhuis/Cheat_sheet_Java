@@ -1,4 +1,4 @@
-package NumberTheory;
+package Old;
 
 import java.util.Scanner;
 

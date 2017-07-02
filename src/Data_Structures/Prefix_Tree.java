@@ -1,6 +1,6 @@
 package Data_Structures;
 
-public class Prefix_Tree {
+class Prefix_Tree {
 	private V root;
 
 	public Prefix_Tree() {
@@ -35,10 +35,7 @@ public class Prefix_Tree {
 			}
 		}
 
-		if (p == root) {
-			return null;
-		}
-		return p;
+		return (p == root) ? null : p;
 	}
 	
 	public static class V {
