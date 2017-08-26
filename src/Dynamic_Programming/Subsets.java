@@ -10,7 +10,7 @@ public class Subsets {
 			int bits = 3;
 			
 			// Top down
-		    for (int mask = 1 << (bits+1) - 1; mask >= 0; mask--) {
+		    for (int mask = (1 << (bits+1) - 1); mask >= 0; mask--) {
 		    	for (int item = 0; item < bits; item++) {
 					int newMask = mask ^ (1 << item);
 					if (newMask > mask) {
@@ -20,7 +20,7 @@ public class Subsets {
 			}
 		
 			// Bottom up
-			for (int mask = 0; mask < 1 << bits; mask++) {
+			for (int mask = 0; mask < (1 << bits); mask++) {
 				for (int item = 0; item < bits; item++) {
 					int ij = mask ^ (1 << item);
 					if (ij < mask) {
