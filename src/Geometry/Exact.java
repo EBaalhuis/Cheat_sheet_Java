@@ -40,12 +40,8 @@ public class Exact {
 		long x = p.x - l.b.x;
 		long y = p.y - l.b.y;
 
-		if (dx == 0) {
-			return p.x == l.a.x;
-		}
-		if (x % dx != 0) {
-			return false;
-		}
+		if (dx == 0) return p.x == l.a.x;
+		if (x % dx != 0) return false;
 		return (x / dx) * dy == y;
 	}
 	

@@ -30,10 +30,10 @@ class BIT2D {
 	}
 
 	public void add(int r, int c, long dif) {
-		for (int i = r; i < t.length; i |= i + 1)
-			for (int j = c; j < t[0].length; j |= j + 1)
+		for (int i = r; i < t.length; i |= i + 1) {
+			for (int j = c; j < t[0].length; j |= j + 1) {
 				t[i][j] += dif;
-	}
+	}}}
 
 	public long sum(int r1, int c1, int r2, int c2) {
 		if (r1 != 0 || c1 != 0) {
@@ -41,9 +41,10 @@ class BIT2D {
 					- sum(0,0, r2, c1 - 1) + sum(0,0, r1 - 1, c1 - 1);
 		}
 		long res = 0;
-		for (int i = r2; i >= 0; i = (i & (i + 1)) - 1)
-			for (int j = c2; j >= 0; j = (j & (j + 1)) - 1)
+		for (int i = r2; i >= 0; i = (i & (i + 1)) - 1) {
+			for (int j = c2; j >= 0; j = (j & (j + 1)) - 1) {
 				res += t[i][j];
+		}}
 		return res;
 	}
 }

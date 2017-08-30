@@ -18,9 +18,7 @@ class UnionFind {
 		int xRoot = find(x);
 		int yRoot = find(y);
 		
-		if (xRoot == yRoot) {
-			return;
-		}
+		if (xRoot == yRoot) return;
 		
 		if (rank[xRoot] < rank[yRoot]) {
 			parent[xRoot] = yRoot;
@@ -33,9 +31,7 @@ class UnionFind {
 	}
 	
 	public int find(int x) {
-		if (parent[x] != x) {
-			parent[x] = find(parent[x]);
-		}
+		if (parent[x] != x) parent[x] = find(parent[x]);
 		return parent[x];
 	}
 }

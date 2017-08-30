@@ -1,9 +1,11 @@
 package Graphs;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.*;
 
 // Hopcroft-Karp algorithm for bipartite maximum matching. 
@@ -92,48 +94,49 @@ public class HopcroftKarp {
 
 	// Main class for example
 	public static void main(String[] args) throws IOException {
-		in.init(System.in);
+		IO io = new IO(System.in);
 
-		int xV = in.nextInt();
-		int yV = in.nextInt();
+		int xV = io.nextInt();
+		int yV = io.nextInt();
 
 		bipartiteGraph g = new bipartiteGraph(xV, yV);
 		
-		int nE = in.nextInt();
+		int nE = io.nextInt();
 		for (int i = 0; i < nE; i++) {
-			g.addEdge(in.nextInt(), in.nextInt());
+			g.addEdge(io.nextInt(), io.nextInt());
 		}
 
 		int matches = g.hc();
 		System.out.println(matches);
 	}
 
-	// In class for testing only
-	static class in {
-		static BufferedReader reader;
-		static StringTokenizer tokenizer;
+	// IO class for testing only
+	static class IO extends PrintWriter {
+		static BufferedReader r;
+		static StringTokenizer t;
 
-		static void init(InputStream input) {
-			reader = new BufferedReader(new InputStreamReader(input));
-			tokenizer = new StringTokenizer("");
+		public IO(InputStream i) {
+			super(new BufferedOutputStream(System.out));
+			r = new BufferedReader(new InputStreamReader(i));
+			t = new StringTokenizer("");
 		}
 
-		static String next() throws IOException {
-			while (!tokenizer.hasMoreTokens()) {
-				tokenizer = new StringTokenizer(reader.readLine());
+		public String next() throws IOException {
+			while (!t.hasMoreTokens()) {
+				t = new StringTokenizer(r.readLine());
 			}
-			return tokenizer.nextToken();
+			return t.nextToken();
 		}
 
-		static int nextInt() throws IOException {
+		public int nextInt() throws IOException{
 			return Integer.parseInt(next());
 		}
 
-		static long nextLong() throws IOException {
+		public long nextLong() throws IOException {
 			return Long.parseLong(next());
 		}
 
-		static double nextDouble() throws IOException {
+		public double nextDouble() throws IOException {
 			return Double.parseDouble(next());
 		}
 	}

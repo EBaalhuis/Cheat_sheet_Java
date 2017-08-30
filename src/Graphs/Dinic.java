@@ -8,7 +8,7 @@ import java.util.*;
 
 
 
-public class MaxFlow {
+public class Dinic {
 	// Dinics max flow
 	// O(V^2 * E)
 	static class Edge {
