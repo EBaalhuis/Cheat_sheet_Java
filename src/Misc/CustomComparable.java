@@ -1,3 +1,4 @@
+package Misc;
 import java.util.PriorityQueue;
 
 // Make a custom class with compareTo, e.g. to put in PriorityQueue.
