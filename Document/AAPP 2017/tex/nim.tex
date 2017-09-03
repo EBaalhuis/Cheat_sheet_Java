@@ -1,0 +1,17 @@
+\subsubsection{Normal play - player who cannot move loses}
+\textbf{Nim} Given a number $n$ of heaps, 2 players take turns removing any number of beads from any heap. A position is winning if and only if the xor of the heap sizes is nonzero.
+\\
+\\
+\noindent \textbf{Grundy number} Suppose only certain amounts of beads are allowed to be removed. Then use the Grundy number: G(0) = 0 and G(pos) is the minimum excluded number (mex) among Grundy numbers of positions reachable from pos. A position is winning if and only the xor of the Grundy numbers of the heaps is nonzero. 
+\\
+\\
+\textbf{Sprague-Grundy Theorem} Any two-player impartial (both players have the same available moves) sequential (players take turns) game with perfect information is equivalent to a Grundy number.
+
+\subsubsection{Mis\`ere play - player who cannot move wins}
+\textbf{Nim} A position is winning if and only if the xor of the heap sizes is nonzero -- unless all heaps have size one, then it is the opposite. (So in the second case, a position is winning if and only if the number of heaps is even).
+\\
+\\
+\noindent \textbf{Other mis\`ere games} If there is only one heap, but limited move options, just do dynamic programming: dp[0] = true (ending on 0 wins) and dp[pos] = true iff you can reach a losing position from pos.
+\\
+\\
+\noindent \textbf{There is no Sprague-Grundy Theorem version for mis\`ere.}

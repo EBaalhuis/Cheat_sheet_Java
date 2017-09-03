@@ -1,0 +1,10 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Inverse of a mod m. Throws error if a and m not rel. prime!
+BigInteger inv = a.modInverse(m); 
+
+// Fast modular exponentiation, find a^exp % m.
+BigInteger res = a.modPow(exp, m);
+
+// Check if a is prime. Prob of error is < 1/2^cert.
+a.isProbablePrime(int cert = 40);
+\end{minted}

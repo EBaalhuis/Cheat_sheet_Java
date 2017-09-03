@@ -1,0 +1,6 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Calculate the n-th Catalan number
+static BigInteger cat(int n) {
+	return ncr(2*n,n).divide(BigInteger.valueOf(n+1));
+}
+\end{minted}

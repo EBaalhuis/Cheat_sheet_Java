@@ -1,0 +1,8 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Checks if a point p is on the line segment ab.
+static boolean onSegment(double[] a, double[] b, double[] p) {
+	return ((p[0] <= Math.max(a[0], b[0]) && p[0] >= Math.min(a[0], b[0]) &&
+    	p[1] <= Math.max(a[1], b[1]) && p[1] >= Math.min(a[1], b[1])) &&
+        orientation(a, b, p) == 0);
+}
+\end{minted}

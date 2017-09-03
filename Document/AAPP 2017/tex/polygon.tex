@@ -1,0 +1,11 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+//Find the area of any polygon in 2d. Points must be in cw or ccw order.
+static double area(double[] xcoord, double[] ycoord) {
+	double res = 0;
+	for (int i = 0; i < xcoord.length - 1; i++) {
+		res += xcoord[i] * ycoord[i + 1] - xcoord[i + 1] * ycoord[i];
+	}
+	res += xcoord[xcoord.length-1] * ycoord[0] - xcoord[0] * ycoord[xcoord.length-1];
+	return Math.abs(res/2);
+}
+\end{minted}

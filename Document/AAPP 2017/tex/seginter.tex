@@ -1,0 +1,21 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// For two line segments ab and pq, determines wether they intersect.
+static boolean segmentIntersect(double[] a, double[] b, double[] p, double[] q) {
+	int o1 = orientation(a, b, p);
+	int o2 = orientation(a, b, q);
+	int o3 = orientation(p, q, a);
+	int o4 = orientation(p, q, b);
+    
+	if (o1 != o2 && o3 != o4)
+		return true;
+	if (o1 == 0 && onSegment(a, b, p))
+		return true;
+	if (o2 == 0 && onSegment(a, b, q))
+		return true;
+	if (o3 == 0 && onSegment(p, q, a))
+		return true;
+	if (o4 == 0 && onSegment(p, q, b))
+		return true;
+	return false;
+}
+\end{minted}

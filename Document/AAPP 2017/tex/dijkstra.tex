@@ -1,0 +1,44 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+static class V implements Comparable<V> {
+	public final int name;
+	public List<E> adj;
+	public double dist = Double.POSITIVE_INFINITY;
+	public V prev;
+
+	public V(int _n) {
+		name = _n;
+		adj = new ArrayList<E>();
+	}
+
+	public int compareTo(V o) {
+		return Double.compare(dist, o.dist);
+	}
+}
+
+static class E {
+	public final V end;
+	public final double w;
+
+	public E(V _e, double _w) {
+		end = _e;
+		w = _w;
+	}
+}
+	
+static void compute(V source) {
+	source.dist = 0.;
+	PriorityQueue<V> q = new PriorityQueue<>();
+	q.add(source);
+
+	while (!q.isEmpty()) {
+		V v = q.poll();
+		for (E e : v.adj) {
+			V u = e.end;
+			double uDist = v.dist + e.w;
+			if (uDist < u.dist) {
+				q.remove(u);
+				u.dist = uDist;
+				u.prev = v;
+				q.add(u);
+}}}}
+\end{minted}

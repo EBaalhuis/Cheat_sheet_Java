@@ -1,0 +1,43 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+//Find strongly connected components of a graph. O(E + V).
+static List<List<Integer>> scc(List<Integer>[] g) {
+	int n = g.length;
+	boolean [] visited = new boolean[n];
+	Stack<Integer> st = new Stack<>();
+	int t = 0;
+	int[] link = new int[n];
+	List<List<Integer>> comp = new ArrayList<>();
+	for (int u = 0; u < n; u++)
+		if (!visited[u])
+			dfs(u, link, t, visited, st, g, comp);
+	return comp;
+}
+
+static void dfs(int u, int[] link, int t, boolean[] visited,
+	Stack<Integer> st, List<Integer>[] g, List<List<Integer>> comp) {
+	link[u] = t++;
+	visited[u] = true;
+	st.add(u);
+	boolean isComponentRoot = true;
+
+	for (int v : g[u]) {
+		if (!visited[v])
+			dfs(v, link, t, visited, st, g, comp);
+		if (link[u] > link[v]) {
+			link[u] = link[v];
+			isComponentRoot = false;
+		}
+	}
+
+	if (isComponentRoot) {
+		List<Integer> component = new ArrayList<>();
+		while (true) {
+			int x = st.pop();
+			component.add(x);
+			link[x] = Integer.MAX_VALUE;
+			if (x == u)	break;
+		}
+		comp.add(component);
+	}
+}
+\end{minted}

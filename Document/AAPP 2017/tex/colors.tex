@@ -1,0 +1,43 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Color graph by backtracking, only for small graph or few colors.
+public static void main(String[] args) throws IOException {
+	int nV = io.nextInt();
+	TreeSet<Integer>[] g = new TreeSet[nV];
+	// Make graph here, dont forget to initialize all g[i]
+	int maxCol = nV;
+	for (int nCol = 1; nCol < maxCol; nCol++) {
+		TreeSet<Integer> colors = new TreeSet<>();
+		for (int i = 1; i <= nCol; i++) 
+			colors.add(i);
+		boolean[] flag = new boolean[nV];
+		int[] assign = new int[nV];
+		if (solve(0, nV, flag, assign, g, colors))
+			io.println(nCol);
+	}
+}
+
+static boolean solve(int index, int n, boolean[] flag, 
+	int[] assign, TreeSet[] g, TreeSet<Integer> colors) {
+	if (index == n) return true;
+	TreeSet<Integer> avail = (TreeSet<Integer>) colors.clone();
+	if (index == 0) {
+		avail.clear();
+		avail.add(1);
+	} else {
+		TreeSet<Integer> adj = g[index];
+		for (int a : adj) { 
+			if (flag[a]) avail.remove(assign[a]);
+			if (avail.isEmpty()) return false;
+		}
+	}
+	for (int col : avail) {
+		assign[index] = col;
+		flag[index] = true;
+		boolean outp = solve(index + 1, n, flag, assign, g, colors);
+		if (outp) return true;
+	}
+	assign[index] = 0;
+	flag[index] = false;
+	return false;
+}
+\end{minted}

@@ -1,0 +1,15 @@
+Generate all permutations of a set (of integers). Call with (list, 0).
+\begin{minted}[tabsize=4,obeytabs]{java}
+static HashSet<Integer[]> permute(List<Integer> arr, int k) {
+	HashSet<Integer[]> set = new HashSet<>();
+	for (int i = k; i < arr.size(); i++) {
+		Collections.swap(arr, i, k);
+		set.addAll(permute(arr, k + 1));
+		Collections.swap(arr, k, i);
+	}
+	if (k == arr.size() - 1) {
+		set.add((Integer[]) arr.toArray().clone());
+	}
+	return set;
+}
+\end{minted}

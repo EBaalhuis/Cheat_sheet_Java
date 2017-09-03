@@ -1,0 +1,11 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// phi(n) is the amount of numbers less than n rel. prime to n
+static long phi(long n) {
+	double res = n;
+	// Use Set instead of List!
+	HashSet<Long> factors = primeFactors(n);
+	for (long f : factors)
+		res *= (1.-1./f);
+	return Math.round(res);
+}
+\end{minted}

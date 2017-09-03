@@ -1,0 +1,38 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Fast matrix exponentiation (must be square) O(l^2 * log(n))
+public static double[][] fme(double[][] a, long n, long mod) {
+	int l = a.length;
+	double[][] res = new double[l][l];
+	for (int i = 0; i < l; i++) {
+		res[i][i] = 1;
+	}
+	
+	String bin = Long.toBinaryString(n);
+	int exp = 0;
+	while (Math.pow(2, exp) <= n) {
+		if (bin.charAt(bin.length()-1-exp) == '1') {
+			res = mult(res, a, mod);
+		}
+		a = mult(a,a,mod);
+		exp++;
+	}
+	
+	return res;
+}
+
+// Multiply 2 matrices
+public static double[][] mult(double[][] a, double[][] b, long mod) {
+	int k = a.length;
+	int n = a[0].length;
+	int m = b[0].length;
+	double[][] res = new double[k][m];
+	for (int i = 0; i < k; i++) {
+		for (int j = 0; j < m; j++) {
+			for (int j2 = 0; j2 < n; j2++) {
+				res[i][j] = (res[i][j] + (a[i][j2] * b[j2][j])) % mod; 
+			}
+		}
+	}
+	return res;
+}
+\end{minted}

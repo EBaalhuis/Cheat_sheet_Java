@@ -1,0 +1,14 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Returns the orientation of the triplet (p,q,r). 0 = colinear,
+// 1 = clockwise, 2 = ccw.
+static int orientation(double[] p, double[] q, double[] r) {
+	double val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1]);
+	if (val == 0) {
+		return 0;
+	} else if (val > 0) {
+		return 1;
+	} else {
+		return 2;
+	}
+}
+\end{minted}

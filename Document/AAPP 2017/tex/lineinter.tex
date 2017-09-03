@@ -1,0 +1,15 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Given two lines according to lineParam, returns their point of intersection.
+static double[] intersect(double[] l1, double[] l2) {
+	double[] res = new double[2];
+	double det = l1[0] * l2[1] - l2[0] * l1[1];
+	if (det == 0) {
+		res[0] = Integer.MAX_VALUE;
+		res[1] = Integer.MAX_VALUE;
+	} else {
+		res[0] = (l2[1] * l1[2] - l1[1] * l2[2]) / det;
+		res[1] = (l1[0] * l2[2] - l2[0] * l1[2]) / det;
+	}
+	return res;
+}
+\end{minted}
