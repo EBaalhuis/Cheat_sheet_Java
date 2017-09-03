@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FastMatrixExp {
 
-	// Fast matrix exponentiation (must be square) O(l^2 * log(n))
+	// Fast matrix exponentiation (must be square) O(l^3 * log(n))
 	public static double[][] fme(double[][] a, long n, long mod) {
 		int l = a.length;
 		double[][] res = new double[l][l];
