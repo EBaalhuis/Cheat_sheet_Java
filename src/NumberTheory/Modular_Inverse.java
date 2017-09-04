@@ -1,4 +1,4 @@
-package Old;
+package NumberTheory;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public class Modular_Inverse {
 	// Compute inverse of a in Z/pZ, with p prime.
 	// I.e. x such that ax = 1 (mod p).
 	static long modInvPrime(long a, long p) {
-		return (long) Math.pow(a, p - 2) % p;
+		return modPow(a, p - 2, p);
 	}
 
 	// Compute inverse of a in Z/rZ, with a and r co-prime.
@@ -17,6 +17,18 @@ public class Modular_Inverse {
 			return -1;
 		}
 		return (extgcd(a, r)[1] + r) % r;
+	}
+	
+	static long modPow(long a, long b, long mod) {
+		long res = 1 % mod;
+		while (b > 0) {
+			if ((b & 1) == 1) {
+				res = res * a % mod;
+			}
+			a = a * a % mod;
+			b >>>= 1;
+		}
+		return res;
 	}
 
 	// extgcd method only for testing, required by modInv.
