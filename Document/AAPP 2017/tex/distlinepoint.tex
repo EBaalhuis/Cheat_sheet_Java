@@ -1,0 +1,27 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Line given by p1 (x,y) and p2 (x,y).
+// Point given by p (x,y). Return distance between line and point.
+// Requires: Geometry/Basics/dotProduct
+static double distLinePoint(double[] p1, double[] p2, double[] p) {
+	double[] q = new double[2];
+	double[] q2 = new double[2];
+	q[0] = p[0] - p1[0];
+	q[1] = p[1] - p1[1];
+	q2[0] = p2[0] - p1[0];
+	q2[1] = p2[1] - p1[1];
+
+	double paral = dotProduct(q2, q) / dotProduct(q2, q2);
+
+	double[] res = new double[2];
+	if (paral <= 0) {
+		res = q;
+	} else if (paral >= 1) {
+		res[0] = q[0] - q2[0];
+		res[1] = q[1] - q2[1];
+	} else {
+		res[0] = q[0] - q2[0] * paral;
+		res[1] = q[1] - q2[1] * paral;
+	}
+	return Math.sqrt(dotProduct(res, res));
+}
+\end{minted}

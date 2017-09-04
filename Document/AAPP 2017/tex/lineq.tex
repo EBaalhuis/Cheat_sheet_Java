@@ -1,0 +1,43 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+static double[] gaussElim(double[][] A, double[] b) {
+	int N = b.length;
+	for (int p = 0; p < N; p++) {
+		int max = p;
+		for (int i = p + 1; i < N; i++) {
+			if (Math.abs(A[i][p]) > Math.abs(A[max][p])) {
+				max = i;
+		}}
+		swap(A, p, max);
+		swap(b, p, max);
+		if (Math.abs(A[p][p]) <= EPS) {
+			return null;
+		}
+		for (int i = p + 1; i < N; i++) {
+			double alpha = A[i][p] / A[p][p];
+			b[i] -= alpha * b[p];
+			for (int j = p; j < N; j++) {
+				A[i][j] -= alpha * A[p][j];
+	}}}
+
+	double[] x = new double[N];
+	for (int i = N - 1; i >= 0; i--) {
+		double sum = 0.0;
+		for (int j = i + 1; j < N; j++) {
+			sum += A[i][j] * x[j];
+		}
+		x[i] = (b[i] - sum) / A[i][i];
+	}
+	return x;
+}
+	
+static void swap(double[][] A, int x, int y) {
+	double[] tmp = A[x];
+	A[x] = A[y];
+	A[y] = tmp;
+}	
+static void swap(double[] b, int x, int y) {
+	double tmp = b[x];
+	b[x] = b[y];
+	b[y] = tmp;
+}
+\end{minted}

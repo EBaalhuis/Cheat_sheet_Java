@@ -1,0 +1,13 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Line 1 given by p1 (x,y) and p2 (x,y), line 2 given by p3 (x,y) and p4 (x,y).
+// Return distance between the two lines. ONLY FOR NON-INTERSECTING LINES!
+static double distLineLine(double[] p1, double[] p2, double[] p3, double[] p4) {
+	double[] res = new double[4];
+	res[0] = distLinePoint(p1, p2, p3);
+	res[1] = distLinePoint(p1, p2, p4);
+	res[2] = distLinePoint(p3, p4, p1);
+	res[3] = distLinePoint(p3, p4, p2);
+	Arrays.sort(res);
+	return res[0];
+}
+\end{minted}

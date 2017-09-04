@@ -1,0 +1,40 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+static TreeSet<Integer> r;
+static TreeSet<Integer> p;
+static TreeSet<Integer> x;
+static HashSet<TreeSet<Integer>> maxCliques;
+	
+// Find all maximal cliques in g. 
+// WARNING exponential complexity, this is NP-complete! n <= 40 roughly.
+public static void bk(TreeSet<Integer> r, TreeSet<Integer> p,
+		TreeSet<Integer> x, ArrayList<Integer>[] g,
+		HashSet<TreeSet<Integer>> max) {
+	if (p.isEmpty() && x.isEmpty()) {
+		maxCliques.add((TreeSet<Integer>) r.clone());
+		return;
+	}
+	int u = p.isEmpty() ? x.first() : p.first();
+	for (Iterator<Integer> i = p.iterator(); i.hasNext();) {
+		int v = i.next();
+		if (g[u].contains(v)) {
+			continue;
+		}
+		TreeSet<Integer> r2 = (TreeSet<Integer>) r.clone();
+		r2.add(v);
+		TreeSet<Integer> p2 = new TreeSet<>();
+		TreeSet<Integer> x2 = new TreeSet<>();
+		for (int a : g[v]) {
+			if (p.contains(a)) {
+				p2.add(a);
+			}
+			if (x.contains(a)) {
+				x2.add(a);
+			}
+		}
+		
+		bk(r2, p2, x2, g, max);
+		x.add(v);
+		i.remove();
+	}
+}
+\end{minted}

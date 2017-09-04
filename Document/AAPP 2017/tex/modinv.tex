@@ -1,0 +1,16 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Compute inverse of a in Z/pZ, with p prime.
+// I.e. x such that ax = 1 (mod p).
+static long modInvPrime(long a, long p) {
+	return (long) Math.pow(a, p - 2) % p;
+}
+
+// Compute inverse of a in Z/rZ, with a and r co-prime.
+// If they are not co-prime, inverse does not exist.
+static long modInv(long a, long r) {
+	if (extgcd(a, r)[0] != 1) {
+		return -1;
+	}
+	return (extgcd(a, r)[1] + r) % r;
+}
+\end{minted}

@@ -1,0 +1,9 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Calculate n! Works for n <= 5 000.
+static BigInteger fac(int n) {
+	BigInteger a = BigInteger.ONE;
+	for (int i = 2; i < n + 1; i++) 
+		a = a.multiply(BigInteger.valueOf(i));
+	return a;
+}
+\end{minted}

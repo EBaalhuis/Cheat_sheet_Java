@@ -1,0 +1,10 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Line given by p0 + t * p1, l = {x0, y0, z0, x1, y1, z1}.
+// Plane given by ax + by + cz + d = 0, p = {a, b, c, d}.
+static double[] intersectLinePlane(double[] l, double[] p) {
+	double p1 = p[0] * l[0] + p[1] * l[1] + p[2] * l[2] + p[3];
+	double p2 = p[0] * l[3] + p[1] * l[4] + p[2] * l[5];
+	double t = -p1 / p2;
+	return new double[]{l[0] + t * l[3], l[1] + t * l[4], l[2] + t * l[5]};
+}
+\end{minted}

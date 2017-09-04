@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+	\usepackage[english]{babel}
+	\usepackage{geometry}
+	\usepackage{minted}
+	\geometry{
+	 a4paper,
+	 %total={170mm,267mm},
+	 left=15mm,
+	 right=15mm,
+	 top=15mm,
+	 bottom=15mm,
+     landscape,
+     twocolumn,
+	}
+	\setlength{\columnsep}{10mm}
+	\usepackage{amsmath}
+	\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\begin{document}
+	\tableofcontents
+	\vfill
+	\textit{This pdf was generated on \today}
+	\newpage
+	
+	\section{Basic}
+		\subsection{Template}
+		\input{template.tex}		
+		
+	\newpage
+	\section{Data Structures}
+		\subsection{Binary Indexed Tree}
+		\input{fenwick.tex}
+		
+		\subsection{Binary Indexed Tree - 2D}
+		\input{bit2d}
+		
+		\subsection{UnionFind}
+		\input{uf.tex}
+		
+		\subsection{Prefix Tree}
+		\input{prefix.tex}
+		
+		\newpage
+		\subsection{Segment Tree}
+		\input{segtree.tex}
+		\newpage
+		
+	\section{Dynamic Programming}
+		\subsection{Knapsack}
+		\input{knapsack.tex}
+		
+		\subsection{Longest Increasing Subsequence}
+		\input{lis.tex}
+		
+		\subsection{Longest Common Substring}
+		\input{lcs.tex}
+		
+		\newpage
+		\subsection{DP over subsets}
+		\input{subsets}
+		
+	\section{Graphs}
+		\subsection{Dijkstra (Single-Source Shortest Path)}
+		\input{dijkstra.tex}
+			
+		\subsection{Floyd-Warshall (All-Pairs Shortest Path)}
+		\input{floyd.tex}
+		
+		\subsection{Hopcroft-Karp (Maximum Bipartite Matching)}
+		\input{hopcroft.tex}
+		
+		\subsection{Topological Sort}
+		\input{topsort.tex}
+		
+		\subsection{2-Color}
+		\input{2color.tex}
+		
+		\newpage
+		\subsection{Bellman-Ford (Single-Source Shortest Path, Neg. Weights)}
+		\input{bellmanford.tex}
+		
+		\newpage
+		\subsection{Coloring}
+		\input{colors.tex}
+		
+		\newpage
+		\subsection{Kruskal (Minimum Spanning Tree)}
+		\input{kruskal.tex}
+		
+		\newpage
+		\subsection{Tarjan (Strongly Connected Components)}
+		\input{tarjan.tex}
+		
+		\newpage
+		\subsection{Dinic (Maximum Flow)}
+		\input{dinic.tex}
+		
+		\newpage
+		\subsection{Min Cost Max Flow}
+		\input{mcmf.tex}
+		
+		\newpage
+		\subsection{Bron-Kerbosch (All Maximal Cliques)}
+		\input{bk.tex}
+
+	\newpage		
+	\section{Geometry}
+		\subsection{Basics}
+		\input{geobasic.tex}
+		
+		\newpage
+		\subsection{Polygon area}
+		\input{polygon.tex}
+		
+		\subsection{Circle tangents}
+		\input{circletan.tex}
+
+		\subsection{Graham Scan (Convex Hull)}
+		\input{graham.tex}
+		
+		\subsection{Points to plane}
+		\input{pointplane.tex}
+		
+		\subsection{Intersect line and plane}
+		\input{interlineplane.tex}
+		
+		\newpage
+		\subsection{Precise Point on Line}
+		\input{exact.tex}
+	
+	\newpage	
+	\section{Number Theory}
+		\subsection{Matrix Exponentiation}
+		\input{matrixexp.tex}
+		\newpage
+		
+		\subsection{Simultaneous Congruences}
+		\input{sc.tex}
+		
+		\subsection{BigInteger methods}
+		\input{biginteger.tex}
+		\newpage
+		
+		%\subsection{Modular Inverse}
+		%\input{modinv.tex}
+		%\newpage
+	
+		\subsection{Primality Test}
+		\input{isprime.tex}
+		
+		\subsection{Prime Decomposition}
+		\input{primefac.tex}
+		
+		\subsection{Catalan numbers}
+		\input{cat.tex}
+		\newpage
+		
+		\subsection{Combinations}
+		\input{ncr.tex}
+		
+		\subsection{GCD}
+		\input{gcd.tex}
+		
+		\subsection{Euler phi}
+		\input{eulerphi.tex}
+		\newpage
+		
+		\subsection{Factorial}
+		\input{factorial.tex}
+		
+		\subsection{Fast Exponentiation}
+		\input{fastexp.tex}
+		
+		\subsection{Theorems and Formulas}
+		\input{theorems.tex}
+		
+	\newpage
+	\section{Misc}
+		\subsection{Order}
+		\input{order.tex}
+		
+		\subsection{Knuth-Morris-Pratt (String Matching)}
+		\input{kmp.tex}
+		
+		\subsection{Binary distance (number of differing bits)}
+		\input{bindist.tex}
+		
+		\subsection{Cycle Finding}
+		\input{cycle.tex}
+		
+		\newpage
+		\subsection{Linear Equations}
+		\input{lineq.tex}
+				
+		\subsection{2-SAT}
+		\input{2sat.tex}
+				
+		\subsection{Permutations of a set}
+		\input{permute.tex}
+		
+		\subsection{Nim and Combinatorial Game Theory}
+		\input{nim.tex}
+		
+	\end{document}

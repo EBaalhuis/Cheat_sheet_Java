@@ -1,0 +1,43 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Single source shortest path, negative weights allowed. O(V*E).
+// Return true if there is no negative weight cycle, false otherwise.
+static void BF (V source, int n, ArrayList<E> edges) {
+	source.dist=0;
+	for (int i = 0; i < n-1; i++) {
+		for (E e : edges) {
+			if (e.start.dist!= Long.MAX_VALUE && 
+					e.start.dist + e.w < e.end.dist) {
+				e.end.dist = e.start.dist + e.w;
+				e.end.prev = e.start;
+	}}}
+		
+	for (E e : edges) {
+		if (e.start.dist!= Long.MAX_VALUE && 
+				e.start.dist + e.w < e.end.dist) {
+			dfs(e.end);
+}}}	
+// dfs to mark vertices reachable from negative cycles
+static void dfs(V start) {
+	start.neg_inf = true;
+	for (E e : start.adj) {
+		if (!e.end.neg_inf) dfs(e.end);
+}}
+
+static class V {
+	public ArrayList<E> adj = new ArrayList<>();
+	public long dist = Long.MAX_VALUE;
+	public V prev = null;
+	public boolean neg_inf = false;
+}
+	
+static class E {
+	public final V start;
+	public final V end;
+	public final long w;
+
+	public E(V _s, V _e, long _w) {
+		start = _s;
+		end = _e;
+		w = _w;
+}}
+\end{minted}

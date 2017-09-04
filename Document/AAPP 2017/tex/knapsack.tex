@@ -1,0 +1,12 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Solve the Knapsack problem with O(n*c) time and O(c) space.
+public static void main(String[] args) throws IOException {
+	// int[] v of values, int[] c of costs
+	int[] dp = new int[cap + 1];
+	for (int j = 0; j < nItems ; j++) {
+		for (int j2 = cap; j2 >= c[j]; j2--) {
+			dp[j2] = Math.max(dp[j2], dp[j2 - c[j]] + v[j]);
+	}}
+	System.out.println(dp[cap]); // shows the max possible value
+}
+\end{minted}

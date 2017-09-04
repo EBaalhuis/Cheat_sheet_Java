@@ -1,0 +1,7 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+static class Order implements Comparator<Integer> {
+	public int compare(Integer x, Integer y) {
+		return -1 * Integer.compare(x, y);
+	}
+}
+\end{minted}

@@ -1,0 +1,29 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+static int[] TH(int x0) {
+	int power = 1, len = 1;
+	int t = x0;
+	int h = f(x0);
+	while (t!= h) {
+		if (power==len) {
+			t = h;
+			power *= 2;
+			len = 0;
+		}
+		h = f(h);
+		len++;
+	}
+
+	int start = 0;
+	t = h = x0;
+	for (int i = 0; i < len; i++) {
+		h = f(h);
+	}
+	while (t!=h) {
+		t = f(t);
+		h = f(h);
+		start++;
+	}
+
+	return new int[] {len, start};
+}
+\end{minted}

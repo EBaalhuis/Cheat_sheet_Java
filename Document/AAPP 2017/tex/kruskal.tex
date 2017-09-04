@@ -1,0 +1,43 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// O(E log E).
+static ArrayList<E> compute(int nV,E[] edges) {
+	ArrayList<E> res = new ArrayList<E>();
+	UnionFind uni = new UnionFind(nV);
+	PriorityQueue<E> q = new PriorityQueue<E>();
+	for (int i = 0; i < edges.length; i++)
+		q.add(edges[i]);
+		
+	while (!q.isEmpty()) {
+		E e = q.poll();
+		int start = e.start.name;
+		int end = e.end.name;
+		if (uni.find(start) != uni.find(end)) {
+			uni.union(start, end);
+			res.add(e);
+	}}
+	return res;
+}
+	
+static class V {
+	public final int name;
+	public List<E> adj;
+	
+	public V(int nm) {
+		name = nm;
+		adj = new ArrayList<E>();
+	}
+}
+	
+static class E implements Comparable<E>{
+	public final int w;
+	public final V start, end;
+	public E(V s, V e, int _w) {
+		start = s;
+		end = e;
+		w = _w;
+	}	
+	public int compareTo(E other) {
+		return Integer.compare(this.w, other.w);
+	}
+}
+\end{minted}

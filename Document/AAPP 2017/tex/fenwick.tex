@@ -1,0 +1,22 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+class BIT {
+	private long[] s;
+
+	public BIT(int n) {
+		s = new long[n];
+	}
+
+	public void add(int pos, long dif) {
+		for (int i = pos; i < s.length; i |= i + 1)
+			s[i] += dif;
+	}
+
+	public long sum(int from, int to) {
+		if (from > 0) return sum(0, to) - sum(0, from - 1);
+		long res = 0;
+		for (int i = to; i >= 0; i = (i & (i + 1)) - 1)
+			res += s[i];
+		return res;
+	}
+}
+\end{minted}

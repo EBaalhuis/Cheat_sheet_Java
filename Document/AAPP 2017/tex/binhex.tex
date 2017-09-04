@@ -1,0 +1,11 @@
+\begin{minted}[tabsize=4,obeytabs]{java}
+// Convert between hex and decimal.
+String hexNr = "a02f";
+long number = Long.parseLong(hexNr, 16);
+String hex = Long.toHexString(number);
+
+// Decimal to binary and back.
+int x = 100;
+String binary = Integer.toBinaryString(x);
+int y = Integer.parseInt(binary, 2);
+\end{minted}
