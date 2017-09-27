@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 
 public class MinCostMaxFlow {
-	// Find flow of value at least k for minimum cost. k=MAX_VALUE for max flow.
+	// Find flow of value at least k for minimum cost. k=MAX_VALUE for overall max flow.
 	static long[] MCMF(ArrayList<E>[] g, long k, int s, int t) {
 		long flow = 0, cost = 0, INF = Long.MAX_VALUE/1000;
 		int n = g.length;
