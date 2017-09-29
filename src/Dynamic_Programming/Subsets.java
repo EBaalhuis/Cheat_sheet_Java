@@ -11,8 +11,8 @@ public class Subsets {
 		int bits = 3;
 
 		// Top down
+		for (int mask = (1 << (bits + 1) - 1); mask >= 0; mask--) {
 		for (int item = 0; item < bits; item++) {
-			for (int mask = (1 << (bits + 1) - 1); mask >= 0; mask--) {
 				if ((mask & (1 << item)) == 0) {
 					int superset = mask ^ (1 << item);
 					// Do things
@@ -21,11 +21,10 @@ public class Subsets {
 		}
 
 		// Bottom up
-		for (int item = 0; item < bits; item++) {
-			for (int mask = 0; mask < (1 << bits); mask++) {
+		for (int mask = 0; mask < (1 << bits); mask++) {
+			for (int item = 0; item < bits; item++) {
 				if ((mask & (1 << item)) != 0) {
 					int subset = mask ^ (1 << item);
-					// Do things
 				}
 			}
 		}
