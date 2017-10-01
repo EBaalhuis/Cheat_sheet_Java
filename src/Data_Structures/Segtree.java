@@ -74,7 +74,7 @@ class Segtree {
 		return res;
 	}
 	
-	public void update(int i, int j, int val) {
+	public void update(int i, int j, long val) {
 		update(1,0,arr.length-1,i,j,val);
 	}
 	
