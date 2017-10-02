@@ -12,7 +12,7 @@ public class Subsets {
 
 		// Top down
 		for (int mask = (1 << (bits + 1) - 1); mask >= 0; mask--) {
-		for (int item = 0; item < bits; item++) {
+			for (int item = 0; item < bits; item++) {
 				if ((mask & (1 << item)) == 0) {
 					int superset = mask ^ (1 << item);
 					// Do things
